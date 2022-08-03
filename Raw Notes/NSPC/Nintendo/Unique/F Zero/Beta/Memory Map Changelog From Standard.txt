@@ -1,0 +1,109 @@
+This is a streamlined version of my memory map notes for the original source variant, only covering new memory locations, any movement, and unused memory locations.
+
+Please not that all SFX sequence memory locations are counted as new because this appears to be a unique variant. The base is the same, but the VCMD set is different.
+
+Same as standard Kankichi source build...
+$01-$07
+$0A
+$0C
+$0E
+$10-$19
+$30-$4E
+$50-$6A
+$70-$7F
+$80,$82,$84,$86,$88,$8A,$8C,$8E
+$90-$CF
+$100,$102,$104,$106,$108,$10A,$10C,$10E
+$200-$24F
+$280-$2DF
+$2E0,$2E2,$2E4,$2E6,$2E8,$2EA,$2EC,$2EE
+$2F0,$2F2,$2F4,$2F6,$2F8,$2FA,$2FC,$2FE
+$300-$38F
+
+Relocated compared to standard Kankichi source build...
+$00 -> $D4
+$08 -> $D5
+
+New/Unused memory map locations:
+$00 - CPUIO0 register input... mostly. Ends up being ANDed by $07 down the road, and thus becomes de-facto music ID input in the long run.
+$08 - Last value read by the CPUIO0 register music ID-wise.
+$09 - Forced tick flag. Bit 0 is for music, and bit 1 is for SFX.
+$0B - Unused.
+$0D - Used to store the enable flag for the looping beeping effect (CPUIO1 bit 6), though the bit set is different. Noticeably not used if the music ID is anything but $04, $05, or if nothing's playing.
+$1A - Unused.
+$1B - BRR block ID for noise generation. Incremented every timer 0 tick.
+$1C - SFX voice on flag (AKA which music channels should not play notes)
+$1D - Used during song ID $11 to trigger an ambience-related BRR noise note every 256 SFX tempo ticks.
+$1E - Tick counter for the other SFX triggered through CPUIO1 bit 6 for restarting it.
+$1F - Unused.
+$20 - Tick counter for the engine noise pitch bends through CPUIO1.
+$21 - CPUIO1 BRR engine noise frequency, fractional portion.
+$22 - CPUIO1 BRR engine noise frequency, whole portion. Slides to match CPUIO1's value (ANDed by $3F).
+$23 - CPUIO1 BRR engine noise frequency offset per SFX tick, fractional portion.
+$24 - CPUIO1 BRR engine noise frequency offset per SFX tick, whole portion.
+$25 - Tick counter for the gearshift-like effect in the engine SFX (CPUIO1 bit 7).
+$26 - Tick counter for various SFX instances. Specifically, CPUIO0 SFX (except for the one use of SFX sequences), CPUIO1 SFX (looping beeping effect only through CPUIO1 bit 6) and CPUIO2 SFX (though for bit 6, it's only set to $01).
+$27 - Has various uses throughout the SFX collection. The usages are...
+-- Note index for CPUIO0 SFX ID ($30 after ANDing by $30)
+-- Counter used for a vibrato effect for CPUIO2 SFX bit 6.
+-- Tick counter for CPUIO2 SFX bit 7 for the looping portion only.
+$28 - CPUIO2 BRR engine noise frequency, fractional portion.
+$29 - CPUIO2 BRR engine noise frequency, whole portion.
+$2A - Has various uses throughout the SFX collection.
+-- For CPUIO0 SFX ID $10 (after ANDing by $30), note, fractional portion.
+-- Low byte of SFX sequence pointer. (used by CPUIO0 SFX ID $20 after ANDing by $30)
+-- For CPUIO2 SFX, BRR engine noise frequency offset per SFX tick, fractional portion.
+$2B - Always used as a word with $2A.
+-- For CPUIO0 SFX ID $10 (after ANDing by $30), note, whole portion.
+-- High byte of SFX sequence pointer. (used by CPUIO0 SFX ID $20 after ANDing by $30)
+-- For CPUIO2 SFX, BRR engine noise frequency offset per SFX tick, ehole portion.
+$2C - SFX sequence note duration.
+$2D - Saved SFX sequence note duration.
+$2E - Number of ticks between keying off a note and the next note in a SFX sequence.
+$2F - Tick counter for the pitch bends in the engine noise SFX through CPUIO2 bits 4-5.
+$4F - EON as defined by either music or SFX, with quite a good deal of overwriting between each other.
+$6B-$6F - Unused.
+$81,$83,$85,$87,$89,$8B,$8D,$8F - Unused.
+$D0 - SFX sequence ID to set up. Doesn't mean it will always play. Noticeably, $02 is not the only valid ID here... $01 is also valid. But it's not used.
+$D1 - SFX sequence ID currently playing.
+$D2 - Last SFX sequence ID read from CPUIO0 that played?
+$D3 - Unused.
+$D6 - Non-sequence SFX ID (represented by raw CPUIO0 values for the most part) currently playing?
+$D7 - Unused.
+$D8 - Fade out timer for MVOL and EVOL.
+$D9 - Tick counter for the engine noise pitch bends through CPUIO3.
+$DA - CPUIO3 BRR engine noise value, fractional portion.
+$DB - CPUIO3 BRR engine noise value, whole portion. Slides to match CPUIO3's value (ANDed by $0F).
+$DC - CPUIO3 BRR engine noise note offset per SFX tick, fractional portion.
+$DD - CPUIO3 BRR engine noise note offset per SFX tick, whole portion.
+$DE - CPUIO3 BRR engine noise note, fractional portion.
+$DF - CPUIO3 BRR engine noise note, whole portion. Noticeably represented with the highest bit set.
+$E0 - When CPUIO3 is less than $F0, this is a step-based counter for CPUIO3 SFX related to changing the BRR engine noise note. When CPUIO3 is $F0 or higher, this is a counter for handling a tremolo-like effect on the channels.
+$E1 - Number of ticks to wait after CPUIO3 SFX is done before reallocating channel for music.
+$E2 - Panning value to use for the CPUIO3 SFX.
+$E3-$EF - Unused.
+$101,$103,$105,$107,$109,$10B,$10D,$10F - Unused.
+$110-$1CF - Reserved for stack.
+$1D0-$1FF - Unused.
+$250-$27F - Unused.
+$2E1,$2E3,$2E5,$2E7,$2E9,$2EB,$2ED,$2EF - Unused.
+$2F1,$2F3,$2F5,$2F7,$2F9,$2FB,$2FD,$2FF - Unused.
+$390-$39F - Unused.
+$3A0 - EFB as defined by music.
+$3A1 - EVOLL as defined by music (there is no EVOLR, so these values are automatically equal to each other).
+$3A2 - EON as defined by music.
+$3A3 - Final voice volume backup for channel 6.
+$3A4 - Panning with phase inversion backup for channel 6.
+$3A5 - Unused.
+$3A6 - Final voice volume backup for channel 7.
+$3A7 - Panning with phase inversion backup for channel 7.
+$3A8 - Unused.
+$3A9 - Flag indicating whether channels 1-5 and 7 are used for CPUIO3 SFX. If this is false, then CPUIO3 only controls channel 6.
+$3AA - Number of ticks to wait after CPUIO2 BRR engine SFX is done before reallocating channel for music.
+$3AB - Tick counter for CPUIO0 SFX ID %??11???? ($30 after being ANDed by $30) after being stopped before the next SFX is allowed to play (or the channel is reallocated).
+$3AC-$4FF - Unused.
+
+$7FE - Actual music ID to use in place of music ID $06.
+
+Other notes...
+$00 and $08 - Both of these correlate to music IDs moreso than their actual input, since they get modified.

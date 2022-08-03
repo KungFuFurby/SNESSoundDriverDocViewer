@@ -1,0 +1,75 @@
+This is a streamlined version of my memory map notes for the original source variant, only covering new memory locations, any movement, and unused memory locations.
+
+Doesn't count the more speculative ones that are commented out (or is a non-indexed case with regards to $09-$0B). They're merely marked unused.
+
+Same as Super Mario World (NOTE: Scratch RAM also counts):
+$00-$08
+$0E-$17
+$30-$42
+$69-$6A
+$70,$72,$74,$76,$78,$7A,$7C,$7E
+$200-$20F
+
+Same as Pilotwings (NOTE: Scratch RAM also counts):
+$71,$73,$75,$77,$79,$7B,$7D,$7F
+$80,$82,$84,$86,$88,$8A,$8C,$8E
+$90-$CF
+$210-$21F
+
+Relocated compared to Pilotwings:
+$1C -> $1A
+$1D-$1E -> $18-$19
+$2E -> $48
+$2F -> $49
+$43 -> $50
+$46 -> $44
+$48 -> $47
+$49 -> $51
+$50-$5C -> $52-$5E
+$60 -> $68
+$61-$68 -> $60-$67
+$110,$112,$114,$116,$118,$11A,$11C,$11E -> $100,$102,$104,$106,$108,$10A,$10C,$10E
+$220,$222,$224,$226,$228,$22A,$22C,$22E -> $221,$223,$225,$227,$229,$22B,$22D,$22F
+$240-$25F -> $300-$31F
+$260,$262,$264,$266,$268,$26A,$26C,$26E -> $320,$322,$324,$326,$328,$32A,$32C,$32E
+$280-$2DF -> $330-$38F
+$300-$30F -> $280-$28F
+$320-$36F -> $290-$2DF
+$370,$372,$374,$376,$378,$37A,$37C,$37E -> $2E0,$2E2,$2E4,$2E6,$2E8,$2EA,$2EC,$2EE
+$371,$373,$375,$377,$379,$37B,$37D,$37F -> $321,$323,$325,$327,$329,$32B,$32D,$32F
+
+New/Unused memory map locations:
+$09-$0B - Unused.
+$0D - Unused.
+$1B - Fast Forward flag.
+$1C-$2F - Unused.
+$45 - Key on flag for all channels. Cleared every timer tick.
+$46 - Key off flag for all channels. Cleared every timer tick.
+$4A - EON mirror.
+$4B - PMON mirror. Never set by the sound driver to anything other than zero, but clearly it sets up possible support by the programmer.
+$4C - Counter to wait for the echo buffer to initialize itself for.
+$4D - EDL mirror.
+$4E - EFB mirror.
+$4F - Unused.
+$5F - Percussion base instrument ID. Defines the lowest instrument ID to use for the percussion kit.
+$6B-$6F - Unused.
+$81,$83,$85,$87,$89,$8B,$8D,$8F - Unused.
+$D0-$EF - Unused.
+$101,$103,$105,$107,$109,$10B,$10D,$10F - Unused.
+$110-$1CF - Reserved for stack.
+$1D0-$1FF - Unused.
+$221,$223,$225,$227,$229,$22B,$22D,$22F - Pitch base multiplier, whole portion.
+$250-$27F - Unused.
+$2E1,$2E3,$2E5,$2E7,$2E9,$2EB,$2ED,$2EF - Unused.
+$2F1,$2F3,$2F5,$2F7,$2F9,$2FB,$2FD,$2FF - Unused.
+$390-$3FF - Unused.
+$400,$402,$404,$406,$408,$40A,$40C,$40E - Channel mute flag.
+$401,$403,$405,$407,$409,$40B,$40D,$40F - Unused.
+$410-$7FF - Unused.
+
+Other notes:
+$00-$03 - This remains consistent, but the values are no longer automatically cleared every tempo tick in standard Kankichi.
+$09-$0B - Although they're unused, template-wise they're correctly set up. Therefore, they are marked as identical to Standard Kankichi-kun when caught.
+$18-$19 - Your algorithm may vary.
+$48 - This mirror is auto-written to in standard Kankichi, rather than being a mere storage location.
+$49 - This mirror is auto-written to in standard Kankichi, rather than being a mere storage location.

@@ -1,0 +1,145 @@
+Due to being the earliest game on here for N-SPC, everything's recorded here.
+
+$00-$03 - CPUIO register input. Cleared at a rate of (256/56)*16 timer 0 ticks.
+$04-$07 - CPUIO register output.
+$08-$0B - Last value read by the CPUIO register.
+$0C - Tick counter for the song to initialize itself.
+$0D - CPUIO3 number of ticks to wait before playing next SFX.
+$0E-$0F - Always zero. Read for a few operations where YA needs to have its bits inverted.
+$10 - Scratch RAM. I'll have to check the scope of where each usage is.
+-- TODO scope
+$11 - Scratch RAM, sometimes as a word used with $10. I'll have to check the scope of where each usage is.
+-- TODO scope
+$12 - Scratch RAM. I'll have to check the scope of where each usage is.
+-- TODO scope
+$13 - Scratch RAM. I'll have to check the scope of where each usage is.
+-- TODO scope
+$14 - Scratch RAM. I'll have to check the scope of where each usage is.
+-- TODO scope
+$15 - Scratch RAM, sometimes as a word used with $14. I'll have to check the scope of where each usage is.
+-- TODO scope
+$16 - Scratch RAM. I'll have to check the scope of where each usage is.
+-- TODO scope
+$17 - Scratch RAM, sometimes as a word used with $16. I'll have to check the scope of where each usage is.
+-- TODO scope
+$18-$19 - CPUIO0 SFX pointer.
+$1A-$1B - CPUIO3 SFX pointer.
+$1C - Tick counter for CPUIO1 SFX IDs $01 and $04.
+$1D - SFX voice on flag.
+$1E-$2D - Unused.
+$2E - FLG mirror (or a noise clock mirror). Due to a bug, echo writes get enabled when noise SFX is played.
+$2F - Which channel is reserving the noise. Interestingly, for SFX, you can only do this with the CPUIO3 SFX, and no other known channels to my knowledge can do this because noise is not implemented for music.
+$30-$3F - Track pointer for the music, one word per track.
+$40-$41 - Phrase pointer.
+$42 - Phrase jump counter.
+$43 - Global transposition (modified by VCMD $E4).
+$44 - Fractional counter for the CPUIO/SFX tempo ticker (running at a tempo of $38).
+$45 - Counter for the CPUIO/SFX tempo ticker.
+$46 - Current channel being processed times 2.
+$47 - Key on flag for music. Cleared every music tempo tick.
+$48 - Voice bit being processed for music.
+$49 - Fractional counter for the music tempo ticker.
+$4A-$4F - Unused.
+$50 - Fractional part of music tempo.
+$51 - Music tempo.
+$52 - Music tempo fade tick counter. Ends up reused as fractional part of target tempo once zero.
+$53 - Target music tempo.
+$54 - Music tempo fade rate per music tempo tick, fraction portion.
+$55 - Music tempo fade rate per music tempo tick, whole portion.
+$56 - Fractional part of song volume.
+$57 - Song volume.
+$58 - Song volume fade tick counter. Ends up reused as fractional part of target song volume once zero.
+$59 - Target song volume.
+$5A - Song volume fade rate per music tempo tick, fraction portion.
+$5B - Song volume fade rate per music tempo tick, whole portion.
+$5C - Voice volume change flag.
+$5D-$5F - Unused.
+$60 - Echo volume fade tick counter.
+$61 - Fractional part of left echo volume.
+$62 - Left echo volume.
+$63 - Fractional part of right echo volume.
+$64 - Right echo volume.
+$65 - Left echo volume fade rate per music tempo tick, fraction portion.
+$66 - Left echo volume fade rate per music tempo tick, whole portion.
+$67 - Right echo volume fade rate per music tempo tick, fraction portion.
+$68 - Right echo volume fade rate per music tempo tick, whole portion.
+$69 - Target left echo volume.
+$6A - Target right echo volume.
+$6B-$6F - Unused.
+$70,$72,$74,$76,$78,$7A,$7C,$7E - Music note duration, one byte per track.
+$71,$73,$75,$77,$79,$7B,$7D,$7F - Unused.
+$80,$82,$84,$86,$88,$8A,$8C,$8E - Track volume fade tick counter, one byte per track.
+$81,$83,$85,$87,$89,$8B,$8D,$8F - Track panning fade tick counter, one byte per track.
+$90,$92,$94,$96,$98,$9A,$9C,$9E - Pitch slide tick counter. Shared by both music and SFX.
+$91,$93,$95,$97,$99,$9B,$9D,$9F - Pitch slide delay in music tempo ticks. Shared by both music and SFX, but it doesn't work in SFX.
+$A0,$A2,$A4,$A6,$A8,$AA,$AC,$AE - Vibrato tick counter.
+$A1,$A3,$A5,$A7,$A9,$AB,$AD,$AF - Maximum pitch offset for vibrato.
+$B0,$B2,$B4,$B6,$B8,$BA,$BC,$BE - Tremolo tick counter.
+$B1,$B3,$B5,$B7,$B9,$BB,$BD,$BF - Maximum volume offset for tremolo.
+$C0,$C2,$C4,$C6,$C8,$CA,$CC,$CE - Subroutine loop counter.
+$C1,$C3,$C5,$C7,$C9,$CB,$CD,$CF - Current instrument ID.
+$D0-$EF - Unused.
+
+$100,$102,$104,$106,$108,$10A,$10C,$10E - Music note duration after quantization.
+$101,$103,$105,$107,$109,$10B,$10D,$10F - Unused.
+$110,$112,$114,$116,$118,$11A,$11C,$11E - Vibrato fade tick counter.
+$111,$113,$115,$117,$119,$11B,$11D,$11F - Unused.
+$120-$1CF - Reserved for stack.
+$1D0-$1FF - Unused.
+
+$200,$202,$204,$206,$208,$20A,$20C,$20E - Saved note duration for music.
+$201,$203,$205,$207,$209,$20B,$20D,$20F - Quantization, which is in 256ths of a note.
+$210,$212,$214,$216,$218,$21A,$21C,$21E - Pitch base multiplier.
+$211,$213,$215,$217,$219,$21B,$21D,$21F - Note velocity.
+$220-$23F - Unused.
+$240,$242,$244,$246,$248,$24A,$24C,$24E - Fractional part of track volume for music.
+$241,$243,$245,$247,$249,$24B,$24D,$24F - Track volume for music.
+$250,$252,$254,$256,$258,$25A,$25C,$25E - Track volume fade rate per music tempo tick, fraction portion.
+$251,$253,$255,$257,$259,$25B,$25D,$25F - Track volume fade rate per music tempo tick, whole portion.
+$260,$262,$264,$266,$268,$26A,$26C,$26E - Target track volume.
+$261,$263,$265,$267,$269,$26B,$26D,$26F - Unused.
+$270-$27F - Unused.
+$280,$282,$284,$286,$288,$28A,$28C,$28E - Fractional part of panning for music.
+$281,$283,$285,$287,$289,$28B,$28D,$28F - Panning for music.
+$290,$292,$294,$296,$298,$29A,$29C,$29E - Panning fade rate per music tempo tick, fraction portion.
+$291,$293,$295,$297,$299,$29B,$29D,$29F - Panning fade rate per music tempo tick, whole portion.
+$2A0,$2A2,$2A4,$2A6,$2A8,$2AA,$2AC,$2AE - Target panning.
+$2A1,$2A3,$2A5,$2A7,$2A9,$2AB,$2AD,$2AF - Panning with phase inversion settings.
+$2B0,$2B2,$2B4,$2B6,$2B8,$2BA,$2BC,$2BE - Note for music track, fractional
+$2B1,$2B3,$2B5,$2B7,$2B9,$2BB,$2BD,$2BF - Note for music track, whole
+$2C0,$2C2,$2C4,$2C6,$2C8,$2CA,$2CC,$2CE - Pitch slide rate per music tempo tick, fraction of a note.
+$2C1,$2C3,$2C5,$2C7,$2C9,$2CB,$2CD,$2CF - Pitch slide rate per music tempo tick, whole note.
+$2D0,$2D2,$2D4,$2D6,$2D8,$2DA,$2DC,$2DE - Target note.
+$2D1,$2D3,$2D5,$2D7,$2D9,$2DB,$2DD,$2DF - Fine tune.
+$2E0-$2FF - Unused.
+
+$300,$302,$304,$306,$308,$30A,$30C,$30E - Pitch envelope slide length in music tempo ticks. Overwritten by the Mario jump and girder CPUIO1 SFX.
+$301,$303,$305,$307,$309,$30B,$30D,$30F - Number of music tempo ticks to delay the pitch envelope for. Overwritten by the Mario jump and girder CPUIO1 SFX.
+$310-$31F - Unused.
+$320,$322,$324,$326,$328,$32A,$32C,$32E - Pitch envelope sign. Overwritten by the Mario jump and girder CPUIO1 SFX.
+$321,$323,$325,$327,$329,$32B,$32D,$32F - Pitch envelope offset in semitones. Overwritten by the Mario jump and girder CPUIO1 SFX.
+$330,$332,$334,$336,$338,$33A,$33C,$33E - Current vibrato pitch offset.
+$331,$333,$335,$337,$339,$33B,$33D,$33F - Vibrato pitch offset per music tempo tick.
+$340,$342,$344,$346,$348,$34A,$34C,$34E - Vibrato delay in music tempo ticks.
+$341,$343,$345,$347,$349,$34B,$34D,$34F - Vibrato fade length in music tempo ticks.
+$350,$352,$354,$356,$358,$35A,$35C,$35E - Vibrato fade rate per music tempo tick. There is no fractional portion involved.
+$351,$353,$355,$357,$359,$35B,$35D,$35F - Target vibrato maximum pitch offset for fade in.
+$360,$362,$364,$366,$368,$36A,$36C,$36E - Current tremolo volume offset.
+$361,$363,$365,$367,$369,$36B,$36D,$36F - Tremolo volume offset per music tempo tick. (Bugged in original due to being off by a byte)
+$370,$372,$374,$376,$378,$37A,$37C,$37E - Tremolo delay in music tempo ticks.
+$371,$373,$375,$377,$379,$37B,$37D,$37F - Final voice volume for music prior to adjustments just before writing to DSP.
+$380 - CPUIO0 SFX note duration.
+$381 - CPUIO0 saved SFX note duration.
+$382 - CPUIO0 number of ticks to wait before playing next SFX.
+$383 - CPUIO1 number of ticks to wait before playing next SFX.
+$384 - CPUIO3 SFX note duration.
+$385 - CPUIO3 saved SFX note duration.
+$386 - Yoshi Drum switch from CPUIO1.
+$387 - Number of music tempo ticks to offset. Done by the Hurry Up! SFX, specifically, when both channels are called at once.
+$388 - Pause music switch.
+$389 - Echo channels currently active for music.
+$38A-$3DF - Unused.
+$3E0-$3EF - Pointer to return to once exiting the subroutine and all loops have been executed. One word per track.
+$3F0-$3FF - Start of subroutine pointer, used when looping. One word per track.
+
+$400-$4FF - Unused.

@@ -1,0 +1,83 @@
+This is my memory map tracking from standard Kankichi-kun and Star Glider to this game's build.
+
+Same as standard Kankichi source build... (NOTE: Scratch RAM also counts)
+$00-$06
+$08-$0C
+$0E-$1A
+$30-$4E
+$50-$6A
+$70-$7F
+$80,$82,$84,$86,$88,$8A,$8C,$8E
+$90-$CF
+$100,$102,$104,$106,$108,$10A,$10C,$10E
+$200-$24F
+$280-$2DF
+$2E0,$2E2,$2E4,$2E6,$2E8,$2EA,$2EC,$2EE
+$2F0,$2F2,$2F4,$2F6,$2F8,$2FA,$2FC,$2FE
+$300-$38F
+
+Same as Star Glider...
+$07
+$0D
+$2C-$2D
+$D0-$D1
+$390-$3C3
+$3C7
+$3CA
+$3CE
+TODO
+
+Relocated compared to Star Glider...
+$3E6 -> $3F6
+$3E8-$3E9 -> $3F8-$3F9
+$3EB -> $3FB
+TODO
+(most likely $3E0-$3EF to $3F0-$3FF not counting unused or new locations)
+
+Same as Super Mario All-Stars...
+$250,$252,$254,$256,$258,$25A,$25C,$25E
+$3E0-$3EF
+$3F1
+TODO
+
+Relocated compared to Super Mario All-Stars...
+TODO
+
+TODO may add Super Mario All-Stars and/or Pilotwings to the mix for comparisons
+
+New/Unused memory map locations:
+$1B-$2B - Unused.
+$2E-$2F - Unused.
+$4F - Unused.
+$6B-$6F - Unused.
+$81,$83,$85,$87,$89,$8B,$8D,$8F - Unused.
+$D2-$D3 - Used as an indirect reference during SFX instrument setup.
+$D4-$EF - Unused.
+$101,$103,$105,$107,$109,$10B,$10D,$10F - Unused.
+$110-$1CF - Reserved for stack.
+$1D0-$1FF - Unused.
+$251,$253,$255,$257,$259,$25B,$25D,$25F - Unused.
+$260-$27F - Unused.
+$2E1,$2E3,$2E5,$2E7,$2E9,$2EB,$2ED,$2EF - Unused.
+$2F1,$2F3,$2F5,$2F7,$2F9,$2FB,$2FD,$2FF - Unused.
+$3C4-$3C5 - Unused.
+$3C6 - Header byte to use for the BRR noise.
+$3C8 - Unused.
+$3C9 - TODO (volume fade backup variable)
+$3CB - TODO (related to noise BRR generation as something to be ANDed by)
+$3CC-$3CD - Unused.
+$3CF - Unused.
+$3D0,$3D2,$3D4,$3D6,$3D8,$3DA,$3DC,$3DE - Transposition backup, one byte per track.
+$3D1,$3D3,$3D5,$3D7,$3D9,$3DB,$3DD,$3DF - Unused.
+$3F0 - Unused.
+$3F2 - Unused.
+$3F3 - Effectively only used for subtraction once echo bits have been set back. Said result is not used anywhere, making this effectively unused. If you're wondering, echo is now disabled for all SFX sequences.
+$3F4-$3F5 - Unused.
+$3F7 - Unused.
+$3FA - Unused.
+$3FC - TODO (volume related variable)
+$3FD-$3FF - Unused.
+TODO
+
+Other notes:
+TODO

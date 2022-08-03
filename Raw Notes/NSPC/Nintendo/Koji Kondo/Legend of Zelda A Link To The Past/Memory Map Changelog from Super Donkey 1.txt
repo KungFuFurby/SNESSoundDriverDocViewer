@@ -1,0 +1,57 @@
+This is my memory map tracking from standard Kankichi-kun and Super Donkey 1 to this game's build.
+
+Same as standard Kankichi source build... (NOTE: Scratch RAM also counts)
+$00-$0C
+$0E-$1B
+$30-$4E
+$50-$6A
+$70-$7F
+$80,$82,$84,$86,$88,$8A,$8C,$8E
+$90-$CF
+$100,$102,$104,$106,$108,$10A,$10C,$10E
+$200-$24F
+$280-$2DF
+$2E0,$2E2,$2E4,$2E6,$2E8,$2EA,$2EC,$2EE
+$2F0,$2F2,$2F4,$2F6,$2F8,$2FA,$2FC,$2FE
+$300-$38F
+
+Same as Super Donkey 1...
+$0D
+$20
+$2C-$2D
+$390-$3C3
+$3C7-$3CF
+$3D0,$3D2,$3D4,$3D6,$3D8,$3DA,$3DC,$3DE
+$3E0
+$3FF,$401,$403,$405,$407,$409,$40B,$40D
+
+Relocated compared to Super Donkey 1...
+N/A
+
+New/Unused memory map locations:
+$1C-$1F - Unused.
+$21-$2B - Unused.
+$2E-$2F - Unused.
+$4F - Unused.
+$6B-$6F - Unused.
+$81,$83,$85,$87,$89,$8B,$8D,$8F - Unused.
+$D0-$EF - Unused.
+$101,$103,$105,$107,$109,$10B,$10D,$10F - Unused.
+$110-$1CF - Reserved for stack.
+$1D0-$1FF - Unused.
+$250-$27F - Unused.
+$2E1,$2E3,$2E5,$2E7,$2E9,$2EB,$2ED,$2EF - Unused.
+$2F1,$2F3,$2F5,$2F7,$2F9,$2FB,$2FD,$2FF - Unused.
+$3C4-$3C5 - Only ever read from once. The routine it came from is also unused since it appears to have been disconnected, meaning these memory locations are effectively unused.
+$3C6 - Unused.
+$3D1,$3D3,$3D5,$3D7,$3D9,$3DB,$3DD,$3DF - Unused.
+$3E1 - Stores a copy of the previous song volume when the song volume is set to a fixed value by a CPUIO command.
+$3E2 - SFX voice bits to disable echo for CPUIO2 and CPUIO3 SFX. Note that this is only relevant when music IDs $10-$1F are playing: otherwise they always disable echo.
+$3E3 - SFX voice bits to disable echo for on SFX.
+$3E4 - Fade out counter for the CPUIO1 SFX.
+$3E5 - Stores the volume for the CPUIO1 SFX when fading it out. Note that the volume becomes mono when a fade is in progress due to only one byte being used to store the volume.
+$400,$402,$404,$406,$408,$40A,$40C - Unused.
+$40E-$7FF - Unused.
+
+Other notes:
+TODO

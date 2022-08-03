@@ -1,0 +1,39 @@
+This is a versioning history of NSPC/Koji Kondo by build.
+
+(Prototype)
+0.0a - Super Mario World
+0.0b - Super Mario All-Stars + Super Mario World (Super Mario World build
+0.1a - Pilotwings (US & Japanese versions)
+0.1b - Pilotwings (European version)
+
+All Prototype build pre-date the standard Kankichi-kun build version-wise. Beyond this point use standard Kankichi-kun.
+
+(Uses standard Kankichi-kun)
+1.0 - SimCity
+2.0 - Super Donkey 1
+2.1 - Legend of Zelda - A Link to the Past
+2.5/3.0 - Star Glider
+3.0/0.2 - Super Mario All-Stars
+3.1 - Star Fox/Star Wing
+3.2 - Super Mario: Yoshi Island/Super Mario World 2: Yoshi's Island Prototype
+3.3 - Super Mario: Yoshi Island/Super Mario World 2: Yoshi's Island
+?.? - Star Fox 2 (1994-04-01)
+?.? - Star Fox 2 (1994-04-15)
+?.? - Star Fox 2 (1994-05-06)
+?.? - Star Fox 2 (1994-08-31)
+?.? - Star Fox 2 (1994-12-28)
+?.? - Star Fox 2 (1995-06-08)
+?.? - Star Fox 2 (1995-06-22) & (1995-06-29)
+?.? - Star Fox 2 (1995-07-25)
+?.? - Star Fox 2 (1995-08-31 and beyond)
+
+Versioning history is a little weird here... this is because the protocol is constantly changing for a start.
+
+Super Donkey 1 is mid-transition between SimCity and Legend of Zelda: it has SimCity leftovers, but has the protocol of Legend of Zelda.
+
+Super Mario All-Stars is a weird case versioning-wise. The music player puts it past Star Glider, but before Star Fox. However, its ARAM map and protocol are evolved from Super Mario World's, with a little bit of Pilotwings for the BRR wind noise. Plus, the SFX code is also based off of Super Mario World's due to fixed channel allocation, and the protocol is a modified form of what was used in Super Mario World.
+Thus, Super Mario All-Stars is considered music player 3.0, but everything else 0.2.
+
+Star Glider, consequently, gets a 2.5 for the music player and SFX code, but a 3.0 for protocol (it carries over to Star Fox/Star Wing), and Star Fox/Star Wing gets a 3.1.
+
+Super Mario World 2: Yoshi's Island Prototype appears to be mid-transition between Star Fox/Star Wing and the final version.

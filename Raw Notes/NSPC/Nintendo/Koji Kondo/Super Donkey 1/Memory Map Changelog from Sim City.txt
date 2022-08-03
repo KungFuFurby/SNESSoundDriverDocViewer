@@ -1,0 +1,59 @@
+This is my memory map tracking from standard Kankichi-kun and SimCity to this game's build.
+
+Same as standard Kankichi source build... (NOTE: Scratch RAM also counts)
+$00-$0C
+$0E-$1B
+$30-$4E
+$50-$6A
+$70-$7F
+$80,$82,$84,$86,$88,$8A,$8C,$8E
+$90-$CF
+$100,$102,$104,$106,$108,$10A,$10C,$10E
+$200-$24F
+$280-$2DF
+$2E0,$2E2,$2E4,$2E6,$2E8,$2EA,$2EC,$2EE
+$2F0,$2F2,$2F4,$2F6,$2F8,$2FA,$2FC,$2FE
+$300-$38F
+
+Same as SimCity...
+$0D
+$2C-$2D
+$390-$3C3
+$3C7-$3CA
+$3FF,$401,$403,$405,$407,$409,$40B,$40D
+
+Relocated compared to SimCity...
+N/A
+
+New/Unused memory map locations:
+$1C-$1F - Unused.
+$20 - Panning parameter for current SFX. Only the highest two bits are used: highest bit has priority and pans left, and the second-to-highest bit pans right.
+$21-$2B - Unused.
+$2E-$2F - Unused.
+$4F - Unused.
+$6B-$6F - Unused.
+$81,$83,$85,$87,$89,$8B,$8D,$8F - Unused.
+$D0-$EF - Unused.
+$101,$103,$105,$107,$109,$10B,$10D,$10F - Unused.
+$110-$1CF - Reserved for stack.
+$1D0-$1FF - Unused.
+$250-$27F - Unused.
+$2E1,$2E3,$2E5,$2E7,$2E9,$2EB,$2ED,$2EF - Unused.
+$2F1,$2F3,$2F5,$2F7,$2F9,$2FB,$2FD,$2FF - Unused.
+$3C4-$3C5 - Only ever read from once. The routine it came from is also unused since it appears to have been disconnected, meaning these memory locations are effectively unused.
+$3C6 - Although this memory location is technically read from even if non-functional, the only write comes from a routine that was disconnected. Thus, I effectively consider this to be unused, and even undefined due to a failure to initialize, for all music IDs above $07.
+$3CB - Voice bits in use by CPUIO2 SFX.
+$3CC - Used when searching for the next free voice bit for CPUIO2 SFX.
+$3CD - Voice bits in use by CPUIO3 SFX.
+$3CE - Used when searching for the next free voice bit for CPUIO3 SFX.
+$3CF - Voice bits in use by CPUIO1 SFX.
+$3D0,$3D2,$3D4,$3D6,$3D8,$3DA,$3DC,$3DE - Panning parameters for SFX instance.
+$3D1,$3D3,$3D5,$3D7,$3D9,$3DB,$3DD,$3DF - Unused.
+$3E0 - Used when searching for the next free voice bit for CPUIO1 SFX.
+$400,$402,$404,$406,$408,$40A,$40C - Unused.
+$40E-$7FF - Unused.
+
+Other notes:
+$3A0,$3A2,$3A4,$3A6,$3A8,$3AA,$3AC,$3AE - No longer keeps track of individual CPUIO IDs via offsetting.
+$3C8 - Now a write only location, never read from. This is because the code section that read this memory location is now unused. Even more interesting is that the unused section has a new check involving this variable.
+$3C9 - Now a write only location, never read from. This is because the code section that read this memory location is now unused.

@@ -1,0 +1,73 @@
+This is my memory map tracking from standard Kankichi-kun and Super Mario World and/or Pilotwings to this game's build.
+
+Note that standard Kankichi-kun is used as the base for the most part even though it is actually LATER than Super Mario World's.
+
+Restored & relocated compared to Super Mario World:
+$389 -> $3C3
+
+NOTE: All SFX sequence memory locations are implied to be new because they are no longer hardcoded to a single channel, as they have been modified to be dynamic. This specifically affects (going by Pilotwings, not Super Mario World)...
+$0D -> TODO
+$D3-$D4 -> TODO
+$DD-$DE -> TODO
+$380-$381 -> TODO
+$384-$385 -> TODO
+$38F -> TODO
+Implied relocations are shown above, but again, they're technically no longer hardcoded to a single channel. Plus, the channels were relocated when moving from Super Mario World to Pilotwings.
+
+TODO implied destination location (going by raw channel ID)
+
+Same as standard Kankichi source build... (NOTE: Scratch RAM also counts)
+$00-$0C
+$0E-$1B
+$30-$4E
+$50-$6A
+$70-$7F
+$80,$82,$84,$86,$88,$8A,$8C,$8E
+$90-$CF
+$100,$102,$104,$106,$108,$10A,$10C,$10E
+$200-$24F
+$280-$2DF
+$2E0,$2E2,$2E4,$2E6,$2E8,$2EA,$2EC,$2EE
+$2F0,$2F2,$2F4,$2F6,$2F8,$2FA,$2FC,$2FE
+$300-$38F
+
+Moved from standard Kankichi source build...
+$400,$402,$404,$406,$408,$40A,$40C,$40E -> $3FF,$401,$403,$405,$407,$409,$40B,$40D (this is unusual, but dummied out code may be part of the culprit here: this also does not conflict with anything)
+N/A
+
+New/Unused memory map locations:
+$0D - Current song ID playing.
+$1C-$2B - Unused.
+$2C-$2D - SFX sequence pointer currently being processed.
+$2E-$2F - Unused.
+$4F - Unused.
+$6B-$6F - Unused.
+$81,$83,$85,$87,$89,$8B,$8D,$8F - Unused.
+$D0-$EF - Unused.
+$101,$103,$105,$107,$109,$10B,$10D,$10F - Unused.
+$110-$1CF - Reserved for stack.
+$1D0-$1FF - Unused.
+$250-$27F - Unused.
+$2E1,$2E3,$2E5,$2E7,$2E9,$2EB,$2ED,$2EF - Unused.
+$2F1,$2F3,$2F5,$2F7,$2F9,$2FB,$2FD,$2FF - Unused.
+$390-$39F - SFX sequence pointer.
+$3A0,$3A2,$3A4,$3A6,$3A8,$3AA,$3AC,$3AE - SFX ID currently playing. Note that the IDs are actually merged across sets: one of them is offset by $10 when called from CPUIO3.
+$3A1,$3A3,$3A5,$3A7,$3A9,$3AB,$3AD,$3AF - Tick counter for a SFX sequence to initialize itself.
+$3B0,$3B2,$3B4,$3B6,$3B8,$3BA,$3BC,$3BE - SFX sequence note duration.
+$3B1,$3B3,$3B5,$3B7,$3B9,$3BB,$3BD,$3BF - SFX sequence saved note duration.
+$3C0 - Current SFX slot being processed.
+$3C1 - Current SFX voice bit being processed.
+$3C2 - SFX voice DSP register reference
+$3C4 - SFX slot to disable when CPUIO3 is negative
+$3C5 - SFX voice bit to disable when CPUIO3 is negative
+$3C6 - Playback flag for music IDs $01-$06. When set to a non-zero value, those IDs instead fade out the previous IDs.
+$3C7 - Counter used while initializing the echo buffer.
+$3C8 - Last SFX slot allocated.
+$3C9 - Last SFX voice bit set.
+$3CA - Set to zero if a CPUIO-controlled fade is not in progress. Otherwise, it mirrors the tick counter for a song volume fade.
+$3CB-$3FE - Unused.
+$400,$402,$404,$406,$408,$40A,$40C - Unused.
+$40E-$7FF - Unused.
+
+Other notes:
+$3FF,$401,$403,$405,$407,$409,$40B,$40D - The only non-zero storage possible was stripped of its VCMD reference. Therefore, this is always zero. Also, this relocation is unusual simply because it's not aligned to the expected location. At least there are de-facto no conflicts.

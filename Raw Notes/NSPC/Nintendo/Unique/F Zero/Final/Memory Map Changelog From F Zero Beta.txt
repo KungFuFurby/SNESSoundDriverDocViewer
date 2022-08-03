@@ -1,0 +1,57 @@
+This is a streamlined version of my memory map notes for the original source variant, only covering new memory locations, any movement, and unused memory locations.
+
+Please not that all SFX sequence memory locations are counted as new because this appears to be a unique variant. The base is the same, but the VCMD set is different.
+
+Same as standard Kankichi source build...
+$01-$07
+$0A
+$0C
+$0E
+$10-$19
+$30-$4E
+$50-$6A
+$70-$7F
+$80,$82,$84,$86,$88,$8A,$8C,$8E
+$90-$CF
+$100,$102,$104,$106,$108,$10A,$10C,$10E
+$200-$24F
+$280-$2DF
+$2E0,$2E2,$2E4,$2E6,$2E8,$2EA,$2EC,$2EE
+$2F0,$2F2,$2F4,$2F6,$2F8,$2FA,$2FC,$2FE
+$300-$38F
+
+Same as F-Zero Beta...
+$00
+$08-$09
+$0D
+$1B-$1E
+$20-$2F
+$4F
+$D0-$D2
+$D4-$D6
+$D8-$E2
+$3A0-$3A4
+$3A6-$3A7
+$3A9-$3AB
+$7FE
+
+New/Unused memory map locations:
+$0B - Unused.
+$1A - Noise block ID (refers to which BRR sample to modify, since they are aligned to 256-byte blocks). Also factors in to the pointer to use.
+$1F - Unused.
+$6B-$6F - Unused.
+$81,$83,$85,$87,$89,$8B,$8D,$8F - Unused.
+$D3 - Unused.
+$D7 - Unused.
+$E3-$EF - Unused.
+$101,$103,$105,$107,$109,$10B,$10D,$10F - Unused.
+$110-$1CF - Reserved for stack.
+$1D0-$1FF - Unused.
+$250-$27F - Unused.
+$2E1,$2E3,$2E5,$2E7,$2E9,$2EB,$2ED,$2EF - Unused.
+$2F1,$2F3,$2F5,$2F7,$2F9,$2FB,$2FD,$2FF - Unused.
+$390-$39F - Unused.
+$3A5 - Unused.
+$3A8 - Unused.
+$3AC - Tick counter before initializing CPUIO3 SFX when CPUIO3 is $F0 or higher.
+$3AD-$4FF - Unused.
