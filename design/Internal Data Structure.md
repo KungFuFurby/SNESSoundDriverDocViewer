@@ -43,8 +43,8 @@ This file documents the internal structure that is planned. Yes, you'll notice i
 
 ## Matches
 * Refers to another [SPC Sound Driver Build](#spc-sound-driver-build-2). Required if either the [sorting signature](#sorting-signatures) is not provided or the [memory location(s) noted](#memory-locations-noted) in the [sorting signature](#sorting-signatures) are different because of data in the middle of the code being of a different size.
-** If this field is not provided and no sorting signature is provided, the build is presumed unique.
-** If this field is provided, but is an empty set, then the build is also presumed unique. This can happen if the sorting signature has a problem catching non-memory location-based data.
+   * If this field is not provided and no sorting signature is provided, the build is presumed unique.
+   * If this field is provided, but is an empty set, then the build is also presumed unique. This can happen if the sorting signature has a problem catching non-memory location-based data.
 
 ## Version
 * Done for sorting purposes, especially when the same build can represent multiple games. Represented as a string. May involve branches.
