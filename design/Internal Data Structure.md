@@ -1,5 +1,49 @@
 This file documents the internal structure that is planned. Yes, you'll notice it's planned out like a database... except that I don't want to deal with the shenanigans of setting up one at this moment due to the limitations of GitHub Pages. Instead, I'll see how JavaScript can handle this.
 
+Before I explain everything, here is a diagram containing the intended relationships:
+```mermaid
+erDiagram
+	rom {
+		string gameName
+		string regionRevision
+	}
+
+	spcSoundDriverBuildInROM {
+		string usageInGame
+		string romOffset
+		string isCompressedInROM
+	}
+	rom ||--|{ spcSoundDriverBuildInROM : contains
+	spcSoundDriverBuildInROM ||--|{ spcSoundDriverBuild  : foundIn
+	romsContainingSPCSoundDriverBuild {
+		rom preferredROM
+	}
+
+	rom  ||--|| romsContainingSPCSoundDriverBuild : contains
+	romsContainingSPCSoundDriverBuild ||--|{ spcSoundDriverBuild : foundIn
+
+	spcSoundDriverBuild {
+		string internalName
+		memLoc startingMemoryLocation
+		hexStr sortingSignatures
+		memLoc memoryLocationsNoted
+		memLoc vcmdTableCodeLocation
+	}
+	spcSoundDriverBuild ||--|{ spcSoundDriverBuild : matches
+	spcSoundDriverBuild 
+	spcSoundDriver {
+		string name
+	}
+	spcSoundDriver ||--|{ spcSoundDriverBuild : subset
+	spcSoundDriverBuild ||--|| version : identifies
+	version {
+		string branchName
+	}
+	spcSoundDriverBuild ||--|| aramMap : contains
+	spcSoundDriverBuild ||--|| communicationProtocol : contains
+	spcSoundDriverBuild ||--|| internalSoundFormat : contains
+```
+
 # ROM
 ## Game Name
 * Contains the name of the game.
