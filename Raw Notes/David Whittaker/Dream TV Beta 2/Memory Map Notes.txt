@@ -1,0 +1,91 @@
+This is a memory map of the earliest David Whittaker sound driver game, Dream TV (Beta 2).
+
+$00-$03 - Unused.
+$04 - CPUIO0 backup... at least in theory. In practice, only ever written to.
+$05 - CPUIO1 backup... at least in theory. In practice, only ever written to.
+$06-$07 - Scratch RAM, used only during pitch calculation.
+$08-$09 - Scratch RAM.
+$0A-$0B - Scratch RAM, used only during pitch calculation.
+$0C - KON mirror.
+$0D - KOFF mirror.
+$0E - Current voice bit being processed.
+$0F - FLG mirror.
+$10 - NON mirror.
+$11 - EON mirror.
+$12 - PMON mirror. Only ever cleared on initialization, though.
+$13 - EFB mirror.
+$14 - EDL mirror.
+$15 - EVOLL mirror.
+$16 - EVOLR mirror.
+$17-$18 - Scratch RAM, mostly pointer-based, but there is at least one case where it isn't used this way.
+$19 - Unused.
+$1A - Pause flag for music.
+$1B - Music tempo in (10*(256/x)) timer 0 ticks.
+$1C - Mirror of the music tempo. Only written to, never read from.
+$1D - Music tempo ticker.
+$1E - Global transposition for the music in semitones.
+$1F - Song playing flag for music.
+$20-$29 - Current pattern pointer for music, one word per voice.
+$2A-$33 - Order list loop point for music, one word per voice.
+$34-$3D - Order list offset for music, one word per voice.
+$3E,$40,$42,$44,$46 - VxVOLL mirror for music, one byte per voice.
+$3F,$41,$43,$45,$47 - VxVOLR mirror for music, one byte per voice.
+$48,$4A,$4C,$4E,$50 - Saved note length for music, one byte per voice.
+$49,$4B,$4D,$4F,$51 - Note length remaining for music, one byte per voice.
+$52,$54,$56,$58,$5A - Pitch envelope ID for music, one byte per voice.
+$53,$55,$57,$59,$5B - Pitch envelope byte offset for music, one byte per voice.
+$5C-$65 - VxPITCH value for voice prior to pitch envelope adjustments, one word per voice.
+$66,$68,$6A,$6C,$6E - Per-voice transposition for music, one byte per voice.
+$67,$69,$6B,$6D,$6F - Unused.
+$70,$72,$74,$76,$78 - Pitch base multiplier for music, one byte per voice.
+$71,$73,$75,$77,$79 - Pitch base fractional multiplier for music, one byte per voice.
+$7A-$7F - Unused.
+$80 - Indicates whether a sound instance is playing on channel 8.
+$81 - Indicates whether a sound instance is playing on channel 8.
+$82-$85 - RNG output. Updated every ten timer 0 ticks.
+$86 - Fast forward flag.
+$87 - Timer 0 counter. One tick is equivalent to ten timer 0 ticks.
+$88 - CPUIO2 backup.
+$89-$EF - Unused.
+
+$100-$1CF - Reserved for stack.
+$1D0-$1FF - Unused.
+
+$200 - Number of timer 0 ticks (times 10) remaining for SFX instance on channel 7.
+$201 - Number of timer 0 ticks (times 10) to slide pitches for before restarting the pitch slide for SFX instance on channel 7.
+$202 - Starting VxPITCHL/noise frequency value for SFX instance on channel 7.
+$203 - Starting VxPITCHH value for SFX instance on channel 7.
+$204 - VxPITCHL/noise frequency offset per step for SFX instance on channel 7.
+$205 - VxPITCHH offset per step for SFX instance on channel 7.
+$206 - VxSRCN ID to use for SFX instance on channel 7. If the highest bit is set, this uses noise instead.
+$207 - Pitch overwrite with RNG flag for SFX instance on channel 7.
+$208 - Sign for pitch offset per for SFX instance on channel 7. Zero turns them off, $01-$7F applies a positive offset, and $80-$FF applies a negative offset.
+$209 - Number of timer 0 ticks (times 10) to slide pitches for SFX instance on channel 7. Ignored if the endless flag is set.
+$20A - Current VxADSR1 value for SFX instance on channel 7.
+$20B - Current VxADSR2 value for SFX instance on channel 7.
+$20C - Endless flag for SFX instance on channel 7.
+$20D - Number of timer 0 ticks (times 10) per step for SFX instance on channel 7.
+$20E - Current VxPITCHL/noise frequency value for SFX instance on channel 7.
+$20F - Current VxPITCHH value for SFX instance on channel 7.
+$210 - Number of timer 0 ticks (times 10) remaining in pitch slide for SFX instance on channel 7 prior to restarting the pitch slide.
+$211 - Number of timer 0 ticks (times 10) remaining before processing a step for SFX instance on channel 7.
+$212 - Number of timer 0 ticks (times 10) remaining for SFX instance on channel 8.
+$213 - Number of timer 0 ticks (times 10) to slide pitches for before restarting the pitch slide for SFX instance on channel 8.
+$214 - Starting VxPITCHL/noise frequency value for SFX instance on channel 8.
+$215 - Starting VxPITCHH value for SFX instance on channel 8.
+$216 - VxPITCHL/noise frequency offset per step for SFX instance on channel 8.
+$217 - VxPITCHH offset per step for SFX instance on channel 8.
+$218 - VxSRCN ID to use for SFX instance on channel 8. If the highest bit is set, this uses noise instead.
+$219 - Pitch overwrite with RNG flag for SFX instance on channel 8.
+$21A - Sign for pitch offset per for SFX instance on channel 8. Zero turns them off, $01-$7F applies a positive offset, and $80-$FF applies a negative offset.
+$21B - Number of timer 0 ticks (times 10) to slide pitches for SFX instance on channel 8. Ignored if the endless flag is set.
+$21C - Current VxADSR1 value for SFX instance on channel 8.
+$21D - Current VxADSR2 value for SFX instance on channel 8.
+$21E - Endless flag for SFX instance on channel 8.
+$21F - Number of timer 0 ticks (times 10) per step for SFX instance on channel 8.
+$220 - Current VxPITCHL/noise frequency value for SFX instance on channel 8.
+$221 - Current VxPITCHH value for SFX instance on channel 8.
+$222 - Number of timer 0 ticks (times 10) remaining in pitch slide for SFX instance on channel 8 prior to restarting the pitch slide.
+$223 - Number of timer 0 ticks (times 10) remaining before processing a step for SFX instance on channel 8.
+
+$224-$7FF - Unused.

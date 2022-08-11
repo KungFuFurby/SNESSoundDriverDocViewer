@@ -1,0 +1,34 @@
+This is a streamlined version of my memory map notes covering changes made from Kick Off to Krusty's Super Fun House.
+
+Same as Kick Off (NOTE: Scratch RAM also counts):
+$06-$18
+$1A-$1F
+
+Relocated compared to Kick Off:
+$20-$29 -> $20-$2B
+$2A-$33 -> $2C-$37
+$34-$3D -> $38-$43
+$3E,$40,$42,$44,$46 -> $44,$46,$48,$4A,$4C,$4E
+$3F,$41,$43,$45,$47 -> $45,$47,$49,$4B,$4D,$4F
+$48,$4A,$4C,$4E,$50 -> $50,$52,$54,$56,$58,$5A
+$49,$4B,$4D,$4F,$51 -> $51,$53,$55,$57,$59,$5B
+$52,$54,$56,$58,$5A -> $5C,$5E,$60,$62,$64,$66
+$53,$55,$57,$59,$5B -> $5D,$5F,$61,$63,$65,$67
+$5C-$65 -> $68-$73
+$66,$68,$6A,$6C,$6E -> $74,$76,$78,$7A,$7C,$7E
+$67,$69,$6B,$6D,$6F -> $75,$77,$79,$7B,$7D,$7F
+$71,$73,$75,$77,$79 -> $81,$83,$85,$87,$89,$8B
+$7A-$83 -> $8C-$97
+$8A-$92 -> $9C-$A4
+
+New/Unused memory map locations (including individual bits):
+$00-$05 - Unused.
+$19 - Unused.
+$80,$82,$84,$86,$88,$8A - Unused.
+$98-$9B - Unused.
+$A5-$EF - Unused.
+
+$100-$1CF - Reserved for stack.
+$1D0-$1FF - Unused.
+
+$224-$7FF - Unused.

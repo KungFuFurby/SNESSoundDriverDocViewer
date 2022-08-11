@@ -1,0 +1,27 @@
+This is a streamlined version of my memory map notes covering changes made from the beta version of Dream TV to Kick Off.
+
+NOTE: Why am I using Kick Off and not Krusty's Super Fun House? Because the code is nearly identical between the two and there are fewer memory map changes here.
+
+Same as Dream TV (Beta 2) (NOTE: Scratch RAM also counts):
+$06-$18
+$1A-$66
+$68,$6A,$6C,$6E
+$200-$223
+
+Relocated compared to Dream TV (Beta 2):
+$70-$79 -> $7A-$83
+$80-$88 -> $8A-$92
+
+New/Unused memory map locations (including individual bits):
+$00-$05 - Unused.
+$19 - Unused.
+$67,$69,$6B,$6D,$6F - Signed VxPITCH offset per timer 0 tick (times 10) for music, one byte per voice.
+$70,$72,$74,$76,$78 - Unused.
+$71,$73,$75,$77,$79 - Signed VxPITCH offset for music, one byte per voice.
+$84-$89 - Unused.
+$93-$EF - Unused.
+
+$100-$1CF - Reserved for stack.
+$1D0-$1FF - Unused.
+
+$224-$7FF - Unused.

@@ -1,0 +1,1 @@
+Due to the code being nearly identical, there are no changes to the memory map between both revisions of Krusty's Super Fun House.
