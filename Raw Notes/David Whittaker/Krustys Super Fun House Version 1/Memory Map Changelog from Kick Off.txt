@@ -32,3 +32,6 @@ $100-$1CF - Reserved for stack.
 $1D0-$1FF - Unused.
 
 $224-$7FF - Unused.
+
+Other notes:
+$14 - This is only written to, never read from. However, its status as a de-facto EDL mirror still applies.

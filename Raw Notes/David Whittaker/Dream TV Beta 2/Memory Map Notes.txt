@@ -40,7 +40,7 @@ $67,$69,$6B,$6D,$6F - Unused.
 $70,$72,$74,$76,$78 - Pitch base multiplier for music, one byte per voice.
 $71,$73,$75,$77,$79 - Pitch base fractional multiplier for music, one byte per voice.
 $7A-$7F - Unused.
-$80 - Indicates whether a sound instance is playing on channel 8.
+$80 - Indicates whether a sound instance is playing on channel 7.
 $81 - Indicates whether a sound instance is playing on channel 8.
 $82-$85 - RNG output. Updated every ten timer 0 ticks.
 $86 - Fast forward flag.
