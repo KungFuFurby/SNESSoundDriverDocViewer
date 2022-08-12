@@ -1,0 +1,64 @@
+This is a streamlined version of my memory map notes covering changes made from Krusty's Super Fun House to Batman: Revenge of the Joker.
+
+Same as Krusty's Super Fun House (NOTE: Scratch RAM also counts):
+$06-$18
+$1A-$1F
+
+Relocated compared to Krusty's Super Fun House:
+$20-$2B -> $20-$2F
+$2C-$37 -> $30-$3F
+$38-$43 -> $40-$4F
+$44,$46,$48,$4A,$4C,$4E -> $50,$52,$54,$56,$58,$5A,$5C,$5E
+$45,$47,$49,$4B,$4D,$4F -> $51,$53,$55,$57,$59,$5B,$5D,$5F
+$50,$52,$54,$56,$58,$5A -> $60,$62,$64,$66,$68,$6A,$6C,$6E
+$51,$53,$55,$57,$59,$5B -> $61,$63,$65,$67,$69,$6B,$6D,$6F
+$5C,$5E,$60,$62,$64,$66 -> $70,$72,$74,$76,$78,$7A,$7C,$7E
+$5D,$5F,$61,$63,$65,$67 -> $71,$73,$75,$77,$79,$7B,$7D,$7F
+$68-$73 -> $80-$8F
+$74,$76,$78,$7A,$7C,$7E -> $90,$92,$94,$96,$98,$9A,$9C,$9E
+$75,$77,$79,$7B,$7D,$7F -> $91,$93,$95,$97,$99,$9B,$9D,$9F
+$81,$83,$85,$87,$89,$8B -> $A0,$A2,$A4,$A6,$A8,$AA,$AC,$AE
+$8C-$97 -> $C0-$CF
+$9E-$A4 -> $D0-$D6
+
+NOTE: SFX sequence memory locations were originally recorded separately because they only covered two voices: now they can cover all eight. This specifically affects the following (going from channels 7-8 to channels 1-8)...
+$9C,$9D -> $100,$102,$104,$106,$108,$10A,$10C,$10E
+$200,$212 -> $110,$112,$114,$116,$118,$11A,$11C,$11E
+$201,$213 -> $111,$113,$115,$117,$119,$11B,$11D,$11F
+$202,$214 -> $120,$122,$124,$126,$128,$12A,$12C,$12E
+$203,$215 -> $121,$123,$125,$127,$129,$12B,$12D,$12F
+$204,$216 -> $130,$132,$134,$136,$138,$13A,$13C,$13E
+$205,$217 -> $131,$133,$135,$137,$139,$13B,$13D,$13F
+$206,$218 -> $140,$142,$144,$146,$148,$14A,$14C,$14E
+$207,$219 -> $141,$143,$145,$147,$149,$14B,$14D,$14F
+$208,$21A -> $150,$152,$154,$156,$158,$15A,$15C,$15E
+$209,$21B -> $151,$153,$155,$157,$159,$15B,$15D,$15F
+$20A,$21C -> $160,$162,$164,$166,$168,$16A,$16C,$16E
+$20B,$21D -> $161,$163,$165,$167,$169,$16B,$16D,$16F
+$20C,$21E -> $170,$172,$174,$176,$178,$17A,$17C,$17E
+$20D,$21F -> $171,$173,$175,$177,$179,$17B,$17D,$17F
+$20E,$220 -> $180,$182,$184,$186,$188,$18A,$18C,$18E
+$20F,$221 -> $181,$183,$185,$187,$189,$18B,$18D,$18F
+$210,$222 -> $190,$192,$194,$196,$198,$19A,$19C,$19E
+$211,$223 -> $191,$193,$195,$197,$199,$19B,$19D,$19F
+
+New/Unused memory map locations (including individual bits):
+$00-$03 - Unused.
+$04-$05 - Used to store a pointer containing the song array.
+$19 - Counter for every command received through CPUIO0.
+$A1,$A3,$A5,$A7,$A9,$AB,$AD,$AF - VxSRCN backup for music, one byte per voice.
+$B0,$B2,$B4,$B6,$B8,$BA,$BC,$BE - VxADSR1 backup for music, one byte per voice.
+$B1,$B3,$B5,$B7,$B9,$BB,$BD,$BF - VxADSR2 backup for music, one byte per voice.
+$D7 - Current SFX ID to initialize.
+$D8 - Voice ID currently being processed for SFX times 2.
+$D9 - DSP register ID to use for SFX (Voice ID currently being processed for SFX times $10).
+$DA - Used as a counter while waiting for the echo to initialize itself.
+$DB-$EF - Unused.
+
+$101,$103,$105,$107,$109,$10B,$10D,$10F - Flag indicating whether or not a voice is being used for music, one byte per voice.
+
+$1A0-$1FF - Reserved for stack.
+
+Other notes:
+$11-$16 - These are only written to, never read from. However, their statuses as de-facto mirrors still apply.
+$0100 - Consolidated versionn
