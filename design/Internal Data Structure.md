@@ -13,14 +13,14 @@ erDiagram
 		string romOffset
 		string isCompressedInROM
 	}
-	rom ||--|{ spcSoundDriverBuildInROM : contains
+	rom ||--|| spcSoundDriverBuildInROM : contains
 	spcSoundDriverBuildInROM ||--|{ spcSoundDriverBuild  : foundIn
 	romsContainingSPCSoundDriverBuild {
 		rom preferredROM
 	}
 
-	rom  ||--|| romsContainingSPCSoundDriverBuild : contains
-	romsContainingSPCSoundDriverBuild ||--|{ spcSoundDriverBuild : foundIn
+	romsContainingSPCSoundDriverBuild  ||--|{ rom : contains
+	romsContainingSPCSoundDriverBuild ||--|| spcSoundDriverBuild : contains
 
 	spcSoundDriverBuild {
 		string internalName
