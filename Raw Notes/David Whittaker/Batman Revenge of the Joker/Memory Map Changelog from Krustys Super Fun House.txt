@@ -61,4 +61,3 @@ $1A0-$1FF - Reserved for stack.
 
 Other notes:
 $11-$16 - These are only written to, never read from. However, their statuses as de-facto mirrors still apply.
-$0100 - Consolidated versionn
