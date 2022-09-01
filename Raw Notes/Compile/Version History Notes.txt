@@ -1,0 +1,13 @@
+This is a versioning history of Compile by build.
+
+1.0 - Super Aleste (Japanese version)
+2.0 - Space Megaforce
+2.1 - Super Aleste (European version)
+2.2 - Jaki Crush
+3.0 - Super Puyo Puyo
+      Kirby's Avalanche/Kirby's Ghost Trap
+3.1 - Super Nazo Puyo: Ruruu no Ruu
+3.2 - Super Puyo Puyo Tsuu
+      Madou Monogatari - Hanamaru Daiyouchienji
+      Super Nazo Puyo Tsuu - Rulue no Tetsuwan Hanjouki
+      Super Puyo Puyo Tsuu Remix

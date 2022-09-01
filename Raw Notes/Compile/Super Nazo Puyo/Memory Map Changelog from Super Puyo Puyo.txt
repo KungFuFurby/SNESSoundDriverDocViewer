@@ -1,0 +1,29 @@
+This is a streamlined version of my memory map notes covering changes made from Super Puyo Puyo to Super Nazo Puyo.
+
+Same as Jaki Crush:
+$01 bit 3
+
+Same as Super Puyo Puyo (NOTE: Scratch RAM also counts):
+TODO
+
+Relocated compared to Super Puyo Puyo:
+TODO
+
+New/Unused memory map locations (including individual bits):
+$01 - Bit 6 mutes the amplifiers when set.
+$02-$0F - Unused. Technically one can write to these memory locations through CPU commands, but they otherwise aren't very notable.
+$2D-$2F - Unused. Technically one can write to these memory locations through CPU commands, but they otherwise aren't very notable.
+$44 - Gains an extra bit usage in bit 6, which mutes the amplifiers when set... which kind of moves this away from being a noise clock mirror outright.
+$47-$4A - Unused. Technically one can write to these memory locations through CPU commands, but they otherwise aren't very notable.
+$60-$61 - Unused. Technically one can write to these memory locations through CPU commands, but they otherwise aren't very notable.
+$78-$7F - Unused. Technically one can write to these memory locations through CPU commands, but they otherwise aren't very notable.
+$A0-$AF - Bits 0-1 are unused.
+$208-$20F - Unused.
+$218-$21F - Unused.
+$228-$22F - Unused.
+$238-$23F - Unused.
+$248-$24F - Unused.
+$258-$25F - Unused.
+$268-$26F - Unused.
+$278-$2FF - Unused.
+TODO what else...

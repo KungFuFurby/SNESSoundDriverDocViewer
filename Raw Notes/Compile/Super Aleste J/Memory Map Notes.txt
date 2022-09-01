@@ -1,0 +1,197 @@
+I am ordering an ARAM map for Compile games, starting with the Japanese version of Super Aleste, due to both the modifications made to it and to make things more convenient for me.
+
+Please note that some ARAM locations are overwritten: these go up to $0600, whereas there is initialization code at $0400-$04A0.
+
+$00 - Used purely for output to $2142/$F6. Can either be the last sound ID stopped or any bits set by VCMD $91.
+$01 - A series of global bits that are also output to $2143/$F7.
+- Bits 6-7 are not used.
+- Bit 5 means that a fade is occurring.
+- Bit 4 means the song is fading out.
+- Bit 3 TODO (guessing echo write switch mirror)
+- Bit 2 indicates whether stereo mode is on or not.
+- Bit 1 causes track 14, and only track 14, to get processed (this also happens if $8E is non-zero, meaning the track is active). Otherwise, tracks 0-13 are the ones processed. This happens on pause.
+- Bit 0 is not used.
+$02-$0F - Unused. Technically one can indirectly write and read from them through CPU commands, but they otherwise aren't very notable.
+$10-$17 - CPU Command IDs in the queue.
+$18-$27 - First CPU Command parameter in the queue. Not always used by a command.
+$20-$27 - Second CPU Command parameter in the queue. Not always used by a command.
+$28-$29 - VxPITCH mirror for the current voice.
+$2A - Volume index ID for the current voice after scaling has been applied.
+$2B - Current track ID.
+$2C - Number of tracks left to process.
+$2D - EDL DSP Register Mirror? TODO
+$2E - Counter value to check for $2140/$F4.
+$2F - Number of CPU command queue items to process.
+$30-$31 - Pointer to read data from through CPU commands $E0 and $E1.
+$32-$33 - Pointer to write data to through CPU commands $E2 and $E3.
+$34-$35 - Essentially scratch RAM. Almost always used as the current track's pointer. The exception is CPU Command $F0, and one other one during the processing of a panning envelope.
+$36-$39 - Scratch RAM.
+$3A - Flag for the current voice.
+- Bit 7 means that a pitch bend from VCMD $94 is initialized.
+- Bit 6 indicates whether or not the voice should be keyed on.
+- Bits 4-5 are not used.
+- Bit 3 TODO (envelope reset flag of some sort?)
+- Bit 2 indicates whether or not the voice should be keyed off. Keying on the voice has higher priority than keying off the voice.
+- Bits 0-1 are not used.
+$3B - Unmute flag, one bit per voice.
+$3C - KON DSP Register Mirror.
+$3D - KOFF DSP Register Mirror.
+$3E - Noise clock mirror. Setting the highest bit means that there is a change in the noise.
+$3F - NON DSP Register Mirror.
+$40 - Pitch Modulation bits. (Not quite a direct mirror of the PMON DSP register, though)
+$41 - EON DSP Register Mirror. (Although there are a few extra ANDs and ORs done beforehand...)
+$42 - VxADSR1 mirror for the current voice.
+$43 - VxADSR2 and VxGAIN mirror for the current voice.
+$44 - TODO (suspected to be echo-related)
+$45 - EDL DSP Register Mirror? TODO
+$46 - Unused. Technically one can indirectly write and read from this memory location through CPU commands, but they otherwise aren't very notable.
+$47 - Global transposition from the master header, applied to all notes.
+$48 - Fractional fade rate in 256ths.
+$49 - Fractional counter of the fade rate.
+$4A - Volume index ID for fade.
+$4B - Target volume index ID for fade.
+$4C-$4D - Unused. Technically one can indirectly write and read from them through CPU commands, but they otherwise aren't very notable.
+$4E-$4F - Pointer to an array of pointers to sounds, initialized from the master header.
+$50-$51 - Pointer to a duration table, initialized from the master header.
+$52-$53 - Pointer to the percussion set, initialized from the master header.
+$54-$55 - Pointer to an array of pointers to software volume envelopes, initialized from the master header.
+$56-$57 - Pointer to an array of pointers to pitch envelopes, initialized from the master header.
+$58-$59 - Pointer to an array of pointers to noise clock envelopes, initialized from the master header.
+$5A-$5B - Pointer to an array of pointers to ADSR/GAIN? envelopes, initialized from the master header.
+$5C-$5D - Pointer to a collection of ADSR/GAIN entries, initialized from the master header.
+$5E-$5F - Pointer to an array of pointers to a collection of echo parameter entries, initialized from the master header.
+$60-$61 - Pointer to a collection of transposition values in semitones on a per-sample basis, initialized from the master header.
+$62-$63 - Pointer to an array of pointers to panning envelopes, initialized from the master header.
+$64-$6F - Unused. Technically one can indirectly write and read from them through CPU commands, but they otherwise aren't very notable.
+$70 - ESA DSP Register Mirror.
+$71 - EDL DSP Register Mirror.
+$72 - EVOLL DSP Register Mirror.
+$73 - EVOLR DSP Register Mirror.
+$74 - EFB DSP Register Mirror.
+$75 - List of voice bits to filter for echo.
+$76 - List of voice bits to always enable echo for.
+$77 - Phase inversion bits for the EVOLL and EVOLR DSP Registers. (Only the lowest two bits are used, the lowest one being for the left side)
+$78-$7F - Unused. Technically one can indirectly write and read from them through CPU commands, but they otherwise aren't very notable.
+$80-$8E - A series of flags to set. All of them can get set via VCMD $90. One byte per track.
+- Bit 7 means that the track should not have a fade applied to it from a CPU command.
+- Bit 6 causes any sound that tries to overwrite this track to terminate its initialization.
+- Bit 5 pauses all track whose ID are less than the current track. They then resume from where they left off when the track's bit is cleared.
+- Bit 4 disables keying on between notes.
+- Bit 3 causes the note to be tied to the noise clock rate. This also overwrites the pitch of the note, as it will now always be a raw VxPITCH value of $0100-$01FF.
+- Bit 2 indicates whether or not the note should set a KOFF DSP register voice bit when the duration indicated by VCMD $9D has elapsed.
+- Bit 1 indicates whether or not noise is enabled for the channel.
+- Bit 0 indicates whether or not to output a sample on the channel (if noise is also involved). If this and bit 1 are set, then noise will play on a different voice with its own volume scaler at the same time. Note that unless you're fooling around with the noise, I recommend keeping this bit set because if all bits are cleared, the track is terminated, and this otherwise has no other effect.
+$8F-$9D - A series of track status flags, some of them settable by VCMDs. One byte per track.
+- Bit 7 is not used.
+- Bit 6 represents the sign of a pitch bend from VCMD $94. If it is set, then it is negative.
+- Bit 5 TODO (guessing volume fade related)
+- Bit 4 TODO (guessing volume fade related)
+- Bit 3 means that the track is being faded.
+- Bit 2 means the note is in the "key on" state.
+- Bit 1 means that a volume fade is complete?
+- Bit 0 means that there is a panning envelope running.
+$9E-$AC - A series of track status flags, some of them settable by VCMDs. One byte per track.
+- Bit 7 is not used.
+- Bit 6 means a track of a higher ID is currently using the voice.
+- Bit 5 means that the same sound ID was played on this track previously (and was overwritten during playback).
+- Bit 4 means that the note is set to be keyed on.
+- Bit 3 means that a portamento is in effect.
+- Bit 2 is not used.
+- Bit 1 means that pitch modulation is enabled for the channel. It also means if the preceding voice is not being used by the same sound ID, the channel is muted.
+- Bit 0 means that echo is enabled for the channel.
+$AD-$BB - TODO (contains a series of flags), one byte per track.
+- Bit 3-7 are not used.
+- Bit 2 indicates whether or not percussion uses a fixed panning parameter stored for each percussion note.
+- Bit 1 TODO (inversion-related)
+- Bit 0 TODO (inversion-related)
+$BC-$CA - Tends to vary between containing the note and the low byte of the raw note pitch. One byte per track. 
+$CB-$D9 - Tends to vary between containing a mirror of the note and the high byte of the raw note pitch. One byte per track.
+$DA-$EF - Unused. Technically one can indirectly write and read from them through CPU commands, but they otherwise aren't very notable.
+
+$100-$1CF - Reserved for stack.
+$1D0-$1FF - Unused.
+
+$200-$27F - Unused.
+$280-$287 - Voice 0 DSP register mirror.
+$288 - Sound ID that is currently using voice 0. Set to $FF if muted by pitch modulation because of a non-matching voice ID.
+$289-$28F - Unused.
+$290-$297 - Voice 1 DSP register mirror.
+$298 - Sound ID that is currently using voice 1. Set to $FF if muted by pitch modulation because of a non-matching voice ID.
+$299-$29F - Unused.
+$2A0-$2A7 - Voice 2 DSP register mirror.
+$2A8 - Sound ID that is currently using voice 2. Set to $FF if muted by pitch modulation because of a non-matching voice ID.
+$2A9-$2AF - Unused.
+$2B0-$2B7 - Voice 3 DSP register mirror.
+$2B8 - Sound ID that is currently using voice 3. Set to $FF if muted by pitch modulation because of a non-matching voice ID.
+$2B9-$2BF - Unused.
+$2C0-$2C7 - Voice 4 DSP register mirror.
+$2C8 - Sound ID that is currently using voice 4. Set to $FF if muted by pitch modulation because of a non-matching voice ID.
+$2C9-$2CF - Unused.
+$2D0-$2D7 - Voice 5 DSP register mirror.
+$2D8 - Sound ID that is currently using voice 5. Set to $FF if muted by pitch modulation because of a non-matching voice ID.
+$2D9-$2DF - Unused.
+$2E0-$2E7 - Voice 6 DSP register mirror.
+$2E8 - Sound ID that is currently using voice 6. Set to $FF if muted by pitch modulation because of a non-matching voice ID.
+$2E9-$2EF - Unused.
+$2F0-$2F7 - Voice 7 DSP register mirror.
+$2F8 - Sound ID that is currently using voice 7. Set to $FF if muted by pitch modulation because of a non-matching voice ID.
+$2F9-$2FF - Unused.
+
+$300-$30E - Loop counter, layer 1. One byte per track.
+$30F-$31D - Loop counter, layer 2. One byte per track. Note that there is a mention in the code for this memory location for a check, but it is otherwise never directly set other than being zeroed out on initialization.
+$31E-$32C - Volume index ID. One byte per track.
+$32D-$33B - Software volume envelope ID. One byte per track.
+$33C-$34A - Pitch Envelope ID. One byte per track.
+$34B-$359 - Transposition in semitones. One byte per track.
+$35A-$368 - Tempo, which converts to as 256/x clock pulses per tempo tick (with zero equaling 256). One byte per track.
+$369-$377 - Voice ID to use for the track. One byte per track.
+$378-$386 - Low byte of track pointer. One byte per track.
+$387-$395 - High byte of track pointer. One byte per track.
+$396-$3A4 - Sample ID, also directly corresponding to the VxSRCN DSP register. One byte per track.
+$3A5-$3B3 - ADSR/GAIN ID. One byte per track.
+$3B4-$3C2 - Panning. One byte per track.
+$3C3-$3EF - Unused. Technically they can act as additional loop layers (and they fit neatly into the one byte per track formula, since they're in range of the nesting level.
+$3F0-$3FE - Number of tempo ticks elapsed since last VCMD. One byte per track.
+$3FF-$40D - Next tick to execute a VCMD. One byte per track.
+$40E-$41C - Fine tune in raw VxPITCH units. One byte per track.
+$41D-$42B - Voice ID for noise when using a separate voice. One byte per track.
+$42C-$43A - Fractional volume scaler for noise on separate voice (setting highest bit means don't apply a scaler). One byte per track.
+$43B-$449 - Tick counter that gets the tempo value added on to it, firing a tempo tick every time it wraps around. One byte per track.
+$44A-$458 - Sound ID running on the track. One byte per track.
+$459-$467 - Fractional part of panning while running in a panning envelope. One byte per track.
+$468-$476 - Low byte of the pointer to the panning envelope. One byte per track.
+$477-$485 - High byte of the pointer to the panning envelope. One byte per track.
+$486-$494 - Low byte of target pitch in raw VxPITCH units? One byte per track.
+$495-$4A3 - High byte of target pitch in raw VxPITCH units? One byte per track.
+$4A4-$4B2 - Portamento offset per clock pulse. One byte per track.
+$4B3-$4C1 - Current note being played. One byte per track.
+$4C2-$4D0 - Note after adjusting for pitch bending from $4D1-$4DF. One byte per track.
+$4D1-$4DF - Number of semitones to adjust the pitch per clock pulse. One byte per track.
+$4E0-$4EE - Current byte offset for the ADSR/GAIN envelope. One byte per track.
+$4EF-$4FD - Number of clock pulses remaining before going to the next ADSR/GAIN envelope entry. One byte per track.
+$4FE-$50C - Current byte offset for the software volume envelope. One byte per track.
+$50D-$51B - Number of clock pulses remaining before going to the next software volume envelope entry. One byte per track.
+$51C-$52A - Current byte offset for the pitch envelope. One byte per track.
+$52B-$539 - Number of clock pulses remaining before going to the next pitch envelope entry. One byte per track.
+$53A-$548 - Current byte offset for the noise clock envelope. One byte per track.
+$549-$557 - Number of clock pulses remaining before going to the next noise clock envelope entry. One byte per track.
+$558-$566 - Noise clock modifier parameter per clock pulse. One byte per track.
+$567-$575 - Noise clock frequency. One byte per track.
+$576-$584 - TODO (probably related to a volume fade of some kind from VCMD $93). One byte per track.
+$585-$593 - TODO (probably related to a volume fade of some kind from VCMD $93). One byte per track.
+$594-$5A2 - TODO (probably related to a volume fade of some kind from VCMD $93). One byte per track.
+$5A3-$5B1 - TODO (suspected to be duration-related). One byte per track.
+$5B2-$5C0 - Low byte of return address from subroutine. One byte per track.
+$5C1-$5CF - High byte of return address from subroutine. One byte per track.
+$5D0-$5FF - Unused.
+
+One more quick note for now...
+08DE and beyond fire every clock pulse. That means...
+- ADSR/GAIN envelopes ($10F1)
+- Software volume envelope ($1137)
+- Pitch bends ($117B)
+- Portamento ($11C4) (requires $9E AND $08 not be zero)
+- Pitch Envelope ($1225)
+- Noise Clock Envelope ($129B)
+- Panning Envelope ($133F) (requires $8F AND $01 not be zero)
+- DSP Register Writes ($13EE)

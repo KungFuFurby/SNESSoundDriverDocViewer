@@ -1,0 +1,4 @@
+This is a streamlined version of my memory map notes covering changes made from the European version of Super Aleste to Jaki Crush.
+
+Everything is identical to the European version of Super Aleste except for these new memory locations/bits...
+$E8-$E9 - Track bits currently in use.

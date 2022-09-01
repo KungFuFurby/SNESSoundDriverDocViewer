@@ -1,0 +1,4 @@
+This is a streamlined version of my memory map notes covering changes made from Space Megaforce to the European version of Super Aleste.
+
+Everything is identical to Space Megaforce except for these new memory locations/bits...
+$3A - Bit 4 means there's a new sample ID to set up.

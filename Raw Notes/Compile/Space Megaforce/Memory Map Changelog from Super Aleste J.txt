@@ -1,0 +1,64 @@
+This is a streamlined version of my memory map notes covering changes made from the Japanese version of Super Aleste to Space Megaforce.
+
+Same as Super Aleste (Japanese version) (NOTE: Scratch RAM also counts) (including individual bits if they don't match):
+$00
+$01 bits 1-2, 4-5
+$10-$2C
+$34-$3A
+$4E-$5D
+$60-$63
+$80-$9D
+$9E-$AC bits 3-6
+$AD-$D9
+$300-$3C2
+$3F0-$5CF
+
+Relocated compared to Super Aleste (Japanese version):
+$2E -> $EA
+$2F -> $EB
+$3B -> $3E
+$3C -> $40
+$3D -> $42
+$3E -> $44
+$3F -> $46
+$42-$43 -> $3B-$3C
+$47 -> $3D
+$48-$4B -> $64-$67
+
+$280-$287 -> $200-$207
+$290-$297 -> $210-$217
+$2A0-$2A7 -> $220-$227
+$2B0-$2B7 -> $230-$237
+$2C0-$2C7 -> $240-$247
+$2D0-$2D7 -> $250-$257
+$2E0-$2E7 -> $260-$267
+$2F0-$2F7 -> $270-$277
+
+New/Unused memory map locations (including individual bits):
+$01 - Bit 3 still has its purpose, though it's only in one place now. However, it can no longer be directly set, and all other echo-related checks are gone anyways.
+$02-$0F - Unused. Technically one can write to these memory locations through CPU commands, but they otherwise aren't very notable.
+$2D - Unused. Technically one can write to this memory location through CPU commands, but this otherwise isn't very notable.
+$2E - Only ever zeroed out. Otherwise, it's unused. Technically one can write to this memory location through CPU commands, but this otherwise isn't very notable.
+$2F-$33 - Unused. Technically one can write to these memory locations through CPU commands, but they otherwise aren't very notable.
+$3F - Unused. Technically one can write to this memory location through CPU commands, but this otherwise isn't very notable.
+$41 - Unused. Technically one can write to this memory location through CPU commands, but this otherwise isn't very notable.
+$43 - Unused. Technically one can write to this memory location through CPU commands, but this otherwise isn't very notable.
+$45 - Unused. Technically one can write to this memory location through CPU commands, but this otherwise isn't very notable.
+$47-$4D - Unused. Technically one can write to these memory locations through CPU commands, but they otherwise aren't very notable.
+$5E-$5F - Unused. Technically one can write to these memory locations through CPU commands, but they otherwise aren't very notable.
+$68-$7F - Unused. Technically one can write to these memory locations through CPU commands, but they otherwise aren't very notable.
+$9E-$AC - Bits 0 and 1 are unused.
+$DA-$E9 - Unused. Technically one can write to these memory locations through CPU commands, but they otherwise aren't very notable.
+$EC-$EF - Unused. Technically one can write to this memory location through CPU commands, but this otherwise isn't very notable.
+$100-$1CF - Reserved for stack.
+$1D0-$1FF - Unused.
+$208-$20F - Unused.
+$218-$21F - Unused.
+$228-$22F - Unused.
+$238-$23F - Unused.
+$248-$24F - Unused.
+$258-$25F - Unused.
+$268-$26F - Unused.
+$278-$2FF - Unused.
+$3C3-$3EF - Unused. Technically they can act as additional loop layers (and they fit neatly into the one byte per track formula, since they're in range of the nesting level.
+$5D0-$5FF - Unused.

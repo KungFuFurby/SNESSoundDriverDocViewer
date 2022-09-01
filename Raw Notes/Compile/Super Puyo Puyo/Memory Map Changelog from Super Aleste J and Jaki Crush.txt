@@ -1,0 +1,136 @@
+This is a streamlined version of my memory map notes covering changes made from both the Japanese version of Super Aleste and Jaki Crush to Super Puyo Puyo.
+
+Memory locations that were restored from the Japanese version of Super Aleste are recorded accordingly.
+
+Restored & same as Super Aleste (Japanese version) (NOTE: Scratch RAM also counts):
+$01 bit 3
+$2D
+
+Restored & relocated compared to Super Aleste (Japanese version):
+$40 -> $48
+$41 -> $4A
+$44 -> $2E
+$45 -> $2F
+$5E-$5F -> $60-$61
+$70-$77 -> $78-$7F
+$9E-$AC bits 0-1 -> $A0-$AF bits 0-1
+
+$288 -> $208
+$298 -> $218
+$2A8 -> $228
+$2B8 -> $238
+$2C8 -> $248
+$2D8 -> $258
+$2E8 -> $268
+$2F8 -> $278
+
+Same as Jaki Crush (NOTE: Scratch RAM also counts):
+$00
+$01 bits 1-2, 4-5
+$10-$2C
+$34-$39
+$3A bits 2-4, 6-7
+$3B-$3E
+$40
+$42
+$44
+$46
+$EA-$EB
+
+$200-$207
+$210-$217
+$220-$227
+$230-$237
+$240-$247
+$250-$257
+$260-$267
+$270-$277
+
+Relocated compared to Jaki Crush:
+$4E-$5D -> $50-$5F
+$60-$63 -> $62-$65
+$64-$67 -> $70-$73
+$80-$8E -> $80-$8F
+$8F-$9D bits 0-6 -> $90-$9F bits 0-6
+$9E-$AC bits 3-6 -> $A0-$AF bits 3-6
+$AD-$BB -> $B0-$BF
+$BC-$CA -> $C0-$CF
+$CB-$D9 -> $D0-$DF
+$300-$30E -> $300-$30F
+$30F-$31D -> $310-$31F
+$31E-$32C -> $320-$32F
+$32D-$33B -> $330-$33F
+$33C-$34A -> $340-$34F
+$34B-$359 -> $350-$35F
+$35A-$368 -> $360-$36F
+$369-$377 -> $370-$37F
+$378-$386 -> $380-$38F
+$387-$395 -> $390-$39F
+$396-$3A4 -> $3A0-$3AF
+$3A5-$3B3 -> $3B0-$3BF
+$3B4-$3C2 -> $3C0-$3CF
+$3F0-$3FE -> $400-$40F
+$3FF-$40D -> $410-$41F
+$40E-$41C -> $420-$42F
+$41D-$42B -> $440-$44F
+$42C-$43A -> $450-$45F
+$43B-$449 -> $3D0-$3DF
+$44A-$458 -> $1F0-$1FF
+$459-$467 -> $480-$48F
+$468-$476 -> $460-$46F
+$477-$485 -> $470-$47F
+$486-$494 -> $4A0-$4AF (TODO we may have a consolidation)
+$495-$4A3 -> $4B0-$4BF (TODO we may have a consolidation)
+$4A4-$4B2 -> $490-$49F
+$4B3-$4C1 -> $540-$54F
+$4C2-$4D0 -> $4A0-$4AF (TODO we may have a consolidation)
+$4D1-$4DF -> $4B0-$4BF (TODO we may have a consolidation)
+$4E0-$4EE -> $4C0-$4CF
+$4EF-$4FD -> $4D0-$4DF
+$4FE-$50C -> $4E0-$4EF
+$50D-$51B -> $4F0-$4FF
+$51C-$52A -> $500-$50F
+$52B-$539 -> $510-$51F
+$53A-$548 -> $520-$52F
+$549-$557 -> $530-$53F
+$558-$566 -> $150-$15F
+$567-$575 -> $160-$16F
+$576-$584 -> $190-$19F
+$585-$593 -> $1A0-$1AF
+$594-$5A2 -> $1B0-$1BF
+$5A3-$5B1 -> $1C0-$1CF
+$5B2-$5C0 -> $1D0-$1DF
+$5C1-$5CF -> $1E0-$1EF
+
+New/Unused memory map locations (including individual bits):
+$02-$0F - Unused. Technically one can write to these memory locations through CPU commands, but they otherwise aren't very notable.
+$30-$31 - Unused. Technically one can write to these memory locations through CPU commands, but they otherwise aren't very notable.
+$32 - TODO (guessing overall voice volume scaler)
+$33 - TODO (guessing global transposition as set by the SNES)
+$3A - Bit 0 TODO (only used on song initialization)
+$3F - Unused. Technically one can write to this memory location through CPU commands, but this otherwise isn't very notable.
+$41 - Unused. Technically one can write to this memory location through CPU commands, but this otherwise isn't very notable.
+$43 - Unused. Technically one can write to this memory location through CPU commands, but this otherwise isn't very notable.
+$45 - Unused. Technically one can write to this memory location through CPU commands, but this otherwise isn't very notable.
+$47 - Unused. Technically one can write to this memory location through CPU commands, but this otherwise isn't very notable.
+$49 - Unused. Technically one can write to this memory location through CPU commands, but this otherwise isn't very notable.
+$4B-$4F - Unused. Technically one can write to these memory locations through CPU commands, but they otherwise aren't very notable.
+$66-$67 - TODO
+$68-$6F - Unused. Technically one can write to these memory locations through CPU commands, but they otherwise aren't very notable.
+$74-$77 - Unused. Technically one can write to these memory locations through CPU commands, but they otherwise aren't very notable.
+$90-$9F - Bit 7 TODO (guessing something to do with the pitch bend)
+$E0-$E9 - Unused. Technically one can indirectly write and read from them through CPU commands, but they otherwise aren't very notable.
+$EC-$EF - Unused. Technically one can indirectly write and read from them through CPU commands, but they otherwise aren't very notable.
+$100-$14F - Reserved for stack.
+$170-$17F - TODO
+$180-$18F - TODO
+$209-$20F - Unused.
+$219-$21F - Unused.
+$229-$22F - Unused.
+$239-$23F - Unused.
+$249-$24F - Unused.
+$259-$25F - Unused.
+$269-$26F - Unused.
+$279-$2FF - Unused.
+$3E0-$3FF - Unused. Technically they can act as additional loop layers (and they fit neatly into the one byte per track formula, since they're in range of the nesting level.
+$430-$43F - High byte of fine tune in raw VxPITCH units. One byte per track.
