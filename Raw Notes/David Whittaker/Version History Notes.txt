@@ -21,20 +21,23 @@ NOTE: Versioning info is mostly from the SNESLab wiki entry at this time: furthe
 3.0 - Riddick Bowe Boxing (US Version) (Main Menus)
 3.0 - Riddick Bowe Boxing (US Version) (During a Fight) (Contains ARAM map differences only)
 3.1 - Chavez
-3.1 - Apocalypse II (Opening Logo)/Lemmings 2: The Tribes (Opening Logo)
+3.1 - Apocalypse II (Opening Logo)
+      Lemmings 2: The Tribes (Opening Logo)
 3.1 - Apocalypse II (In-Game)
 3.1 - Elite Soccer/World Cup Striker (Japanese version) (Title Screen)
 3.1 - Elite Soccer/World Cup Striker (European version) (In-Game)
 3.1 - World Cup Striker (Japanese version) (In-Game)
 3.1 - World Cup Striker (European version) (Title Screen)
-3.1 - Kick Off 3 (beta) (Title Screen)/Lawnmower Man/Virtual Wars (US Beta)
-3.1 - Kick Off 3 (beta) (In-Game)
+3.1 - Kick Off 3 (Beta) (Title Screen)
+      Lawnmower Man/Virtual Wars (US Beta)
+3.1 - Kick Off 3 (Beta) (In-Game)
 3.1 - Lawnmower Man/Virtual Wars (In-Game)
 3.1 - Lawnmower Man/Virtual Wars (Driving)
-3.1 - Lemmings 2 - The Tribes (most common build)/Riddick Bowe Boxing (Japanese version)
+3.1 - Lemmings 2 - The Tribes (most common build)
+      Riddick Bowe Boxing (Japanese version)
 3.1 - Lemmings 2 - The Tribes (Beach Tribe)
 3.1 - Lemmings 2 - The Tribes (Cavelem Tribe)
 3.1 - Lemmings 2 - The Tribes (Title Screen)
 3.1 - Porky Pig's Haunted Holiday (beta)
-4.0a - Shaq Fu
-4.0b - Michael Jordan: Chaos in the Windy City
+4.0a- Shaq Fu
+4.0b- Michael Jordan: Chaos in the Windy City
