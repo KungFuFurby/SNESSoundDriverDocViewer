@@ -1,0 +1,56 @@
+Here's my memory map changelog notes from the original Kankichi-kun build.
+
+Same as standard Kankichi source build...
+$00
+$04
+$08
+$0C
+$0E-$1B
+$30-$4E
+$50-$6A
+$70-$7F
+$80,$82,$84,$86,$88,$8A,$8C,$8E
+$90-$CF
+$100,$102,$104,$106,$108,$10A,$10C,$10E
+$200-$24F
+$280-$2DF
+$2E0,$2E2,$2E4,$2E6,$2E8,$2EA,$2EC,$2EE
+$2F0,$2F2,$2F4,$2F6,$2F8,$2FA,$2FC,$2FE
+$300-$38F
+$400,$402,$404,$406,$408,$40A,$40C,$40E
+
+Relocated compared to Kankichi source build...
+N/A
+
+New/Unused memory map locations:
+$01-$03 - Unused.
+$05-$07 - Unused.
+$09-$0B - Unused.
+$0D - Unused.
+$1C-$2F - Unused.
+$4F - Unused.
+$6B-$6F - Unused.
+$81,$83,$85,$87,$89,$8B,$8D,$8F - Unused.
+
+$D0-$D1 - TODO (guessing a note value of some kind to set up for the next SFX instance, including fine tune)
+$D2 - Unused.
+$D3 - Counter indicating the number of commands executed.
+$D4 - Mono/Stereo switch.
+$D5-$EF - Unused.
+
+$101,$103,$105,$107,$109,$10B,$10D,$10F - Unused.
+$110-$1CF - Reserved for stack.
+$1D0-$1FF - Unused.
+
+$250-$27F - Unused.
+$2E1,$2E3,$2E5,$2E7,$2E9,$2EB,$2ED,$2EF - Unused.
+$2F1,$2F3,$2F5,$2F7,$2F9,$2FB,$2FD,$2FF - Unused.
+
+$390 - CPUIO0 mirror. Only ever written to due to the other standard mirrors being used.
+$391 - CPUIO1 mirror.
+$392 - CPUIO2 mirror. Never read from, though.
+$393 - CPUIO3 mirror. Never read from, though.
+$394-$3FF - Unused.
+
+$401,$403,$405,$407,$409,$40B,$40D,$40F - Unused.
+$410-$7FF - Unused.
