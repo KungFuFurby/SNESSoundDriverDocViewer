@@ -41,7 +41,7 @@ $250-$27F - Unused.
 $2E1,$2E3,$2E5,$2E7,$2E9,$2EB,$2ED,$2EF - Unused.
 $2F1,$2F3,$2F5,$2F7,$2F9,$2FB,$2FD,$2FF - Unused.
 $3C4-$3C5 - Only ever read from once. The routine it came from is also unused since it appears to have been disconnected, meaning these memory locations are effectively unused.
-$3C6 - Although this memory location is technically read from even if non-functional, the only write comes from a routine that was disconnected. Thus, I effectively consider this to be unused, and even undefined due to a failure to initialize, for all music IDs above $07.
+$3C6 - Although this memory location is technically read from even if non-functional, the only write comes from a routine that was disconnected. Thus, I effectively consider this to be always zero for all music IDs above $07 (which is the only read case), since it is cleared out on sound driver initialization.
 $3CB - Voice bits in use by CPUIO2 SFX.
 $3CC - Used when searching for the next free voice bit for CPUIO2 SFX.
 $3CD - Voice bits in use by CPUIO3 SFX.

@@ -31,7 +31,7 @@ TODO
 $389 -> $27
 TODO
 
-TODO check $25 and $26 (may or may not have an equivalent in Pilotwings)
+TODO check $25 and $26 (may or may not have an equivalent in Pilotwings, but in Pilotwings' case, I think they recorded more than just active/inactive flags)
 
 Same as Legend of Zelda - A Link to the Past...
 $3C3
@@ -68,7 +68,7 @@ New/Unused memory map locations:
 $00 - CPUIO0 register input... mostly. Ends up getting the highest bit cleared down the road, which means it more directly represents a CPUIO0 SFX ID.
 $01 - CPUIO1 register input... mostly. Ends up getting ANDed by $0F down the road, and thus becomes de-facto CPUIO1 SFX ID in the long run.
 $03 - CPUIO1 register input... mostly. Ends up getting the highest bit cleared down the road, which means it more directly represents a CPUIO3 SFX ID. In one case, it is directly written by the SPC700 program.
-$05 - CPUIO1 register output... partially. This is merely the CPUIO1 SFX ID currently playing, and a second value is ANDed by this value to produce the actual output.
+$05 - CPUIO1 register output... partially. This is merely the CPUIO1 SFX ID currently playing, and a second value (coming from $26) is ORed by this value to produce the actual output.
 $1B-$1F - Unused.
 $21 - Unused.
 $22 - Number of notes remaining for CPUIO SFX ID $04.
@@ -78,10 +78,7 @@ $28-$2B - Unused.
 $4F - Unused.
 $6B-$6F - Unused.
 $81,$83,$85,$87,$89,$8B,$8D,$8F - Unused.
-$D2 - TODO (output related)
 $D3 - Although indirectly this is an alternative output value for CPUIO1, in reality it is unused, since there are no direct writes to this value, and also no direct calls by index reference.
-$D4 - TODO (output related)
-$D5 - TODO (output related)
 $D6-$EF - Unused.
 $101,$103,$105,$107,$109,$10B,$10D,$10F - Unused.
 $110-$1CF - Reserved for stack.

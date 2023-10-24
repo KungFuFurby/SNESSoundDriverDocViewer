@@ -1,4 +1,4 @@
-This is my memory map tracking from standard Kankichi-kun and Star Glider to this game's build.
+This is my memory map tracking from standard Kankichi-kun and Star Glider to this game's build. It also inherits from Super Mario All-Stars.
 
 Same as standard Kankichi source build... (NOTE: Scratch RAM also counts)
 $00-$06
@@ -41,6 +41,7 @@ $3F1
 TODO
 
 Relocated compared to Super Mario All-Stars...
+$3A1,$3A3,$3A5,$3A7,$3A9,$3AB,$3AD,$3AF -> $3D0,$3D2,$3D4,$3D6,$3D8,$3DA,$3DC,$3DE
 TODO
 
 TODO may add Super Mario All-Stars and/or Pilotwings to the mix for comparisons
@@ -67,7 +68,6 @@ $3C9 - TODO (volume fade backup variable)
 $3CB - TODO (related to noise BRR generation as something to be ANDed by)
 $3CC-$3CD - Unused.
 $3CF - Unused.
-$3D0,$3D2,$3D4,$3D6,$3D8,$3DA,$3DC,$3DE - Transposition backup, one byte per track.
 $3D1,$3D3,$3D5,$3D7,$3D9,$3DB,$3DD,$3DF - Unused.
 $3F0 - Unused.
 $3F2 - Unused.
@@ -75,7 +75,7 @@ $3F3 - Effectively only used for subtraction once echo bits have been set back. 
 $3F4-$3F5 - Unused.
 $3F7 - Unused.
 $3FA - Unused.
-$3FC - TODO (volume related variable)
+$3FC - TODO (volume related variable, likely used for engine noise purposes)
 $3FD-$3FF - Unused.
 TODO
 
