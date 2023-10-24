@@ -1,0 +1,11 @@
+This is a versioning history of NSPC/Konami by build.
+
+1.0a - Gradius 3
+1.0b - Ganbare Goemon - Yukihime Kyuushutsu Emaki/Legend of the Mystical Ninja
+1.1 - Akumajou Dracula (1991-06-13 Prototype)
+1.5 - Akumajou Dracula/Super Castlevania IV
+2.0 - Parodius Da! - Shinwa kara Owarai e/Parodius: Non-Sense Fantasy
+2.? - Teenage Mutant Ninja Turtles - Turtles in Time (Beta)
+2.? - Teenage Mutant Ninja Turtles - Turtles in Time
+
+Akumajou Dracula (1991-06-13 Prototype) is traced from Gradius 3 due to containing leftovers from that build (though at least some of the components are de-facto inaccessible because the command IDs themselves were dummied out).

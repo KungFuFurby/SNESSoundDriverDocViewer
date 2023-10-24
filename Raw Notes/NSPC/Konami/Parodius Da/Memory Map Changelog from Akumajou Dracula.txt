@@ -1,0 +1,57 @@
+Same as standard Kankichi source build (NOTE: Scratch RAM also counts)...
+$0E-$17
+$30-$42
+$44-$4A
+$70-$7F
+$80,$82,$84,$86,$88,$8A,$8C,$8E
+$90-$CF
+$100,$102,$104,$106,$108,$10A,$10C,$10E
+$200-$21F
+$280-$2DF
+$2E0,$2E2,$2E4,$2E6,$2E8,$2EA,$2EC,$2EE
+$2F0,$2F2,$2F4,$2F6,$2F8,$2FA,$2FC,$2FE
+$300-$38F
+
+Relocated compared to Kankichi source build...
+$5E -> $4B
+$230-$24F -> $50-$6F
+
+Same as the 1991-06-13 prototype of Akumajou Dracula...
+$0B
+
+Relocated compared to the 1991-06-13 prototype of Akumajou Dracula...
+N/A
+
+Same as the final version of Akumajou Dracula...
+$04-$07
+$0C-$0D
+$19-$1B
+$1D-$2F
+$43
+$81,$83,$85,$87,$89,$8B,$8D,$8F
+$D0-$DF
+$101,$103,$105,$107,$109,$10B,$10D,$10F
+$220-$22F
+$250-$27F
+$2E1,$2E3,$2E5,$2E7,$2E9,$2EB,$2ED,$2EF
+$2F1,$2F3,$2F5,$2F7,$2F9,$2FB,$2FD,$2FF
+$390-$39F
+
+Relocated compared to the final version of Akumajou Dracula...
+$5F -> $4C
+
+New/Unused memory map locations:
+$00-$03 - Unused.
+$08-$0A - Unused.
+$18 - Unused.
+$1C - Unused.
+$4D - Unused.
+$4E - Lowest voice bit to process sound for.
+$4F - Lowest voice ID times 2 to process sound for.
+$E0-$EF - Unused.
+
+$110-$1CF - Reserved for stack.
+$1D0-$1FF - Unused.
+
+$230-$24F - Unused.
+$3A0-$3FF - Unused.

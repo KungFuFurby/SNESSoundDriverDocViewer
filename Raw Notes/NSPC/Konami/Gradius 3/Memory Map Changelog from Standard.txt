@@ -1,0 +1,72 @@
+Here's my memory map changelog notes from the original Kankichi-kun build.
+
+Same as standard Kankichi source build (NOTE: Scratch RAM also counts)...
+$0E-$17
+$30-$42
+$44-$4A
+$5E
+$70-$7F
+$80,$82,$84,$86,$88,$8A,$8C,$8E
+$90-$CF
+$100,$102,$104,$106,$108,$10A,$10C,$10E
+$200-$21F
+$230-$24F
+$280-$2DF
+$2E0,$2E2,$2E4,$2E6,$2E8,$2EA,$2EC,$2EE
+$2F0,$2F2,$2F4,$2F6,$2F8,$2FA,$2FC,$2FE
+$300-$38F
+
+Relocated compared to Kankichi source build...
+N/A
+
+New/Unused memory map locations:
+$00-$03 - Unused.
+$04-$05 - TODO (data transfer pointer related)
+$06 - TODO (data transfer counter related)
+$07 - TODO (also data transfer counter related)
+$08-$0A - Unused.
+$0B - Fade out flag.
+$0C - Fade out tick counter.
+$0D - Negative scaler for the note volume for music while fading out.
+$18 - Unused.
+$19 - Mono/Stereo switch.
+$1A - Voice bits being paused.
+$1B - TODO (voice bit related, possibly which channels to skip VCMD processing for)
+$1C - Unused.
+$1D - TODO (KON voice bit related)
+$1E - Scratch RAM. (TODO record usages if you want)
+$1F - TODO (voice bit related)
+$20,$22,$24,$26,$28,$2A,$2C,$2E - Fixed pitch envelope tick counter, one byte per track. (related to VCMD $E4)
+$22,$23,$25,$27,$29,$2B,$2D,$2F - Fixed pitch envelope index ID, one byte per track. (related to VCMD $E4)
+$43 - Number of timer 0 ticks elapsed since last read.
+$4B-$4C - TODO (music address offset-related)
+$4D - Unused.
+$4E - Retrigger switch for SFX ID $46.
+$4F - Number of ticks remaining before retriggering SFX ID $46.
+$50-$5D - Unused.
+$5F - Voice pan change flag.
+$60-$6F - Unused.
+$81,$83,$85,$87,$89,$8B,$8D,$8F - Repeat section loop counter.
+$D0,$D2,$D4,$D6,$D8,$DA,$DC,$DE - Fractional counter for the tempo ticker, one byte per track.
+$D1,$D3,$D5,$D7,$D9,$DB,$DD,$DF - Tempo, one byte per track. (Formula should be the same as standard N-SPC, TODO check this)
+$E0-$EF - Unused.
+
+$101,$103,$105,$107,$109,$10B,$10D,$10F - Total amount to offset the note velocity while in a repeat section, one byte per track.
+$110-$1CF - Reserved for stack.
+$1D0-$1FF - Unused.
+
+$220-$22F - Only written to, never read from. This actually renders the pitch base multipliers as effectively unused bytes.
+$250,$252,$254,$256,$258,$25A,$25C,$25E - Total amount to transpose the note while in a repeat section, one byte per track.
+$251,$253,$255,$257,$259,$25B,$25D,$25F - Total amount to apply fine tune to the note while in a repeat section, one byte per track.
+$260-$26F - Pointer to the start of repeat section, one word per track.
+$270,$272,$274,$276,$278,$27A,$27C,$27E - Number of TODO ticks per step in fixed pitch envelope, one byte per track.
+$271,$273,$275,$277,$279,$27B,$27D,$27F - Fixed pitch envelope signed scaler? One byte per track.
+$2E1,$2E3,$2E5,$2E7,$2E9,$2EB,$2ED,$2EF - Sound instance ID currently playing, one byte per track.
+$2F1,$2F3,$2F5,$2F7,$2F9,$2FB,$2FD,$2FF - Negative note volume offset, one byte per track.
+
+$390,$392,$394,$396,$398,$39A,$39C,$39E - Transposition from the instrument currently being used, one byte per track.
+$391,$393,$395,$397,$399,$39B,$39D,$39F - Fine tune from the instrument currently being used, one byte per track.
+$3A0-$3FF - Unused.
+
+Other notes...
+$4A - Never set by the sound driver to anything but zero.
