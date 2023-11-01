@@ -1,0 +1,18 @@
+This is a streamlined version of my memory map notes covering changes made from Dream TV to Super SWIV.
+
+Same as Dream TV (NOTE: Scratch RAM also counts):
+$06-$D9
+$100-$19F
+
+Relocated compared to Dream TV:
+N/A
+
+New/Unused memory map locations (including individual bits):
+$00-$05 - Unused.
+$DA-$EF - Unused.
+
+$1A0-$1FF - Reserved for stack.
+
+Other notes:
+$11-$16 - These are only written to, never read from. However, their statuses as de-facto mirrors still apply.
+$141,$143,$145,$147,$149,$14B,$14D,$14F - This is still just an RNG flag for SFX, but the behavior is different: now the low byte of the pitch is offsetted by the RNG value ANDed by $3F on the first step.

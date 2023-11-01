@@ -16,7 +16,8 @@ NOTE: Versioning info is mostly from the SNESLab wiki entry at this time: furthe
 2.3 - Gods (Opening)
 2.3 - Gods (Title Screen & In-Game)
 2.3 - Gods (Ending)
-2.3 - World Class Rugby
+2.3 - World Class Rugby (Outside a Game)
+2.3 - World Class Rugby (During a Game)
 3.0 - Battle Cars
 3.0 - Riddick Bowe Boxing (US Version) (Main Menus)
 3.0 - Riddick Bowe Boxing (US Version) (During a Fight) (Contains ARAM map differences only)

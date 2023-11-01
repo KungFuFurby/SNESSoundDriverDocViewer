@@ -1,0 +1,1 @@
+No significant ARAM map changes compared to the opening build of Gods. Critically, that means the RNG is still being generated, but is still not used.

@@ -1,0 +1,11 @@
+TODO comparison point (I'm just using Riddick Bowe Boxing US version at this time)
+
+Same as Riddick Bowe Boxing (During a Fight)...
+TODO
+
+Relocated compared to Riddick Bowe Boxing (During a Fight)...
+$17-$DA -> $11-$D4
+TODO
+
+New/Unused memory map locations (including individual bits):
+TODO
