@@ -45,7 +45,8 @@ TODO check Star Glider
 
 Same as standard Kankichi source build... (NOTE: Scratch RAM also counts)
 $02
-$04-$0B
+$04
+$06-$0B
 $0E-$1A
 $30-$4E
 $50-$6A
@@ -71,7 +72,7 @@ $03 - CPUIO1 register input... mostly. Ends up getting the highest bit cleared d
 $05 - CPUIO1 register output... partially. This is merely the CPUIO1 SFX ID currently playing, and a second value (coming from $26) is ORed by this value to produce the actual output.
 $1B-$1F - Unused.
 $21 - Unused.
-$22 - Number of notes remaining for CPUIO SFX ID $04.
+$22 - Number of notes remaining for CPUIO1 SFX ID $04.
 $25 - BRR wind control from CPUIO1. $10 turns it on, $20 turns if off.
 $26 - BRR wind control status. $10 if active, zero otherwise.
 $28-$2B - Unused.
