@@ -2,7 +2,7 @@ This is a versioning history of NSPC/Koji Kondo by build.
 
 (Prototype)
 0.0a - Super Mario World
-0.0b - Super Mario All-Stars + Super Mario World (Super Mario World build
+0.0b - Super Mario All-Stars + Super Mario World (Super Mario World build)
 0.1a - Pilotwings (US & Japanese versions)
 0.1b - Pilotwings (European version)
 
