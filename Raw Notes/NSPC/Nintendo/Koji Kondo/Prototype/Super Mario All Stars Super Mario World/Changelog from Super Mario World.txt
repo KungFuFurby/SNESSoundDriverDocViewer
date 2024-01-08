@@ -1,0 +1,5 @@
+(CPUIO1 ($2141/$F5) Protocol)
+- New command.
+
+$F0 - Stop Sound + Jump to IPL Boot ROM
+Stops the sound, then jumps to the IPL Boot ROM.

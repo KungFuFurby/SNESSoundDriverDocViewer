@@ -1,0 +1,2 @@
+(CPUIO1 ($2141/$F5) Protocol)
+- The $FF command clears the EON DSP register instead of muting amplifiers, and jumps directly to the IPL Boot ROM instead of using its own loader.

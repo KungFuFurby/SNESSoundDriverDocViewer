@@ -1,0 +1,71 @@
+Usage is separated by CPUIO register.
+
+CPUIO0 ($2140/$F4)
+-------------------
+Output: Current SFX ID playing on voice 4. Zeroed out once the SFX is done playing.
+
+Input:
+$00 - NOP
+Does absolutely nothing. 
+
+%0xxxxxxx - Play SFX Sequence Set 1
+- %xxxxxxx is the SFX ID to play.
+- $11 mutes the amplifiers and pauses the music once it finishes playing.
+-- Any SFX from SFX Sequence Set 1 will unpause the music and unmute the amplifiers.
+-- Any noise SFX from SFX Sequence Set 2 will unmute the amplifiers, but not unpause the music.
+- $11 and $1D do not permit the Hurry Up! SFX command to be played until it is finished. They also cannot be interrupted, except by $11 or $12.
+
+%1??????? - Hurry Up!
+- Plays SFX ID $1D on both SFX sequence sets and offsets the tempo by $0A without overflow checks. This can stack if it is played multiple times, but only the first one will remain in effect until forced off.
+
+CPUIO1 ($2141/$F5)
+-------------------
+Output: Current SFX ID playing on voice 7. Zeroed out once the SFX is done playing.
+
+Input:
+$00, $05-$FE - NOP
+Does absolutely nothing.
+
+$01 - Jump
+Plays Mario's jumping SFX on voice 7. This is a one note hardcoded ASM SFX with a pitch bend.
+
+$02 - Enable Yoshi Drums
+Enables Yoshi Drums on voice 5. This simply means that the voice is unmuted.
+Yoshi Drums are only supported on music IDs $01-$03 and $06. If this is true, voice 5 is set to SFX instrument ID $09.
+
+$03 - Disable Yoshi Drums
+Disables Yoshi Drums.
+
+$04 - Girder
+Plays a girder SFX on voice 7. This is a two note hardcoded ASM SFX.
+
+$FF - Stop Sound + Load New Data
+Stops the sound, then jumps to a modified copy of the IPL Boot ROM. The biggest difference is that unlike a standard IPL Boot ROM, this one doesn't have a jump anywhere case after you're done loading.
+
+TODO record protocol (nearly identical to the IPL Boot ROM with a couple of differences or so)
+
+CPUIO2 ($2142/$F6)
+-------------------
+Output: Current music ID playing. Zeroed out once the music is done playing.
+
+Input:
+$00 - NOP
+Does absolutely nothing.
+
+%0xxxxxxx - Play Music
+- %xxxxxxx is the music ID to play.
+-- $09-$0C, $0F, $10 and $16 reset the tempo speedup effect done by the Hurry Up! command.
+
+%1??????? - Fade Out
+Fades out the music by sliding the song volume to zero over 240 tempo ticks. 
+
+CPUIO3 ($2143/$F7)
+-------------------
+Output: Current SFX ID playing on voice 6. Zeroed out once the SFX is done playing.
+
+$00 - NOP
+Does absolutely nothing.
+
+xx - Play SFX Sequence Set 2
+- xx is the SFX ID to play.
+-- $05, $1D and $24 cannot be interrupted by any other instances. In order of priority, though, $24 can interrupt $1D, which in turn can interrupt $05.

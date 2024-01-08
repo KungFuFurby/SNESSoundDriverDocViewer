@@ -1,0 +1,34 @@
+The protocol comes from the Super Mario World build of Super Mario All-Stars + Super Mario World, so we'll document the changes here.
+
+(CPUIO0 ($2140/$F4) Protocol)
+- The highest bit is no longer used except for retriggering purposes by toggling it.
+- The Hurry Up! SFX trigger was relocated to SFX ID $7F.
+- $11 and $1D cannot be interrupted, $11, $12 and $43 can interrupt these two.
+- $11 keys everything off instead of muting amplifiers.
+- $12 is now specifically reserved for unpausing the music.
+- $3B and $43 force echo off while they play.
+
+(CPUIO1 ($2141/$F5) Protocol)
+- Most of the cases have been split into nibbles as following...
+xy
+- x mostly controls the BRR wind.
+-- $1 activates wind BRR. If sent again after being set to something else, the wind BRR SFX restarts.
+-- $2 disables wind BRR.
+-- $F does nothing if y is not $0 or $F. Otherwise, it's pretty much the same behavior as Super Mario All-Stars + Super Mario World (Super Mario World)'s build.
+-- All other values are NOPs.
+- y mostly contains the same set as before, with these exceptions...
+-- $2 and $3 are NOPs.
+-- $4 was redefined to use a different hardcoded SFX. It is actually a sequence of sorts this time, since it reads from an array of notes.
+
+(CPUIO2 ($2142/$F6) Protocol)
+- The IDs that now stop the tempo speedup are $07, $09, $0D, $11, $12 and $14.
+- $73-$EF stop the wind BRR noise and fades out the song volume over 144 tempo ticks.
+- $F0 stops the music. This is irrevocable: SFX Sequence ID $12 from CPUIO0 won't restore the music.
+- $F1 sets the song volume (and anything scaled by it) to $70.
+- $F2 restores the song volume.
+- $F3 is similar to $73-$EF, but it also resets the tempo speedup effect done by the Hurry Up! command.
+- $F4-$FF are NOPs.
+
+(CPUIO3 ($2143/$F7) Protocol)
+- The highest bit is no longer used except for retriggering purposes by toggling it.
+- $05 and $1D cannot be interrupted by any other instances. $1D, however, can interrupt $05.
