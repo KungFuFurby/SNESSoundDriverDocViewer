@@ -1,0 +1,49 @@
+(Phrase Format)
+- Two new commands are defined.
+
+$80 $00 - Fast Forward On
+Fast Forward causes the song to stop playing and the player rapidly progresses throughout the song. Thus, this can effectively act as a skip.
+
+$81 $00 - Fast Forward Off
+Disables Fast Forward and continues playing the song normally.
+
+(Music Format)
+- Lots of command ID relocations...
+-- The note range has been redefined from $80-$C5 to $80-$C7.
+-- Ties are relocated from $C6 to $C8.
+-- Rests are relocated from $C7-$CF to $C9.
+-- Percussion are relocated from $D0-$D9 to $CA-$DF.
+-- Command IDs $DA-$DC are offset by six IDs to $E0-$E2.
+-- Command IDs $DE-$E4 are offset by five IDs to $E3-$E9.
+-- Pitch Slide To Note is moved from command ID $DD to command ID $F9.
+
+- Six new command IDs are defined.
+
+$EA xx - Single Channel Absolute Transposition
+- xx is a signed value defining the number of semitones to transpose subsequent notes.
+
+$FA xx - Percussion Base Instrument ID Redefine
+- xx is the starting instrument ID. Note that this affects all channels.
+
+$FB ?? ?? - NOP
+Reads two bytes, then does absolutely nothing with the command. 
+
+$FC - Channel Mute
+Causes the channel to not key on subsequent notes. 
+
+$FD - Fast Forward On
+Fast Forward causes the song to stop playing and the player rapidly progresses throughout the song. Thus, this can effectively act as a skip.
+
+$FE - Fast Forward Off
+Disables Fast Forward and continues playing the song normally.
+
+(Percussion)
+- A unique array is no longer used: instead, it matches the instrument's array. As a side effect of doing this, all percussion notes now play at a note of $A4 by default (the constant may be different elsewhere).
+
+(Instrument)
+- When noise is involved, the VxSRCN ID used is set to zero.
+- A sixth byte is added on to the end that represents the fractional pitch base multiplier, defined in 256ths.
+
+The instrument format now looks like this (dd is new and is defined below)
+%xyyyyyyy zz aa bb cc dd
+- dd is a fractional pitch base multiplier, defined in 256ths.

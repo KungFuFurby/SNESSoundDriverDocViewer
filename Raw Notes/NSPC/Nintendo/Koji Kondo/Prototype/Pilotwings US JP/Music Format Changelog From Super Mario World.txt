@@ -1,0 +1,8 @@
+(Instrument)
+- If the VxSRCN ID is negative, then noise is used, with the lowest five bits representing the noise clock value. The VxSRCN ID used on top of the noise is still the raw ID indicated.
+
+The first byte is now like this...
+%xyyyyyyy
+- %x is a noise clock switch.
+-- If set, noise is used and %??yyyyy represents the noise clock rate.
+-- If cleared, %0yyyyyyy is a direct write to the VxSRCN DSP register.

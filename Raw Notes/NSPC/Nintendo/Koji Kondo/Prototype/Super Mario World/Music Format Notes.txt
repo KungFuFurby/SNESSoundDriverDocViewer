@@ -1,0 +1,183 @@
+This is the original song format for Kankichi-kun (known more informally as N-SPC, or Nintendo SPC), as originally defined in Kankichi-kun. The prototype variant, as used in Super Mario World, is the earliest.
+
+Phrase Format
+--------
+Song entries are stored as little endian pointers to a list of phrases for the song to play. The phrase format is defined as following...
+
+$00 $00 - End of Song
+Terminates the song.
+
+%0xxxxxxx $00 yy yy - Jump x Times
+- %xxxxxxx is the number of times to jump.
+- yy yy is a little endian pointer to a phrase to jump to.
+
+%1??????? $00 xx xx - Always Jump
+- xx xx is a little endian pointer to a phrase to jump to.
+
+xx xx - Play Pattern
+- xx xx is a little endian pointer to a set of eight pointers to track data, one for each voice.
+
+Pattern Entry Format
+--------
+xx xx yy yy zz zz aa aa bb bb cc cc dd dd ee ee
+- xx xx is a little endian pointer to a pattern order list for voice 0. If the pointer is zero, there is no track data.
+- yy yy is a little endian pointer to a pattern order list for voice 1. If the pointer is zero, there is no track data.
+- zz zz is a little endian pointer to a pattern order list for voice 2. If the pointer is zero, there is no track data.
+- aa aa is a little endian pointer to a pattern order list for voice 3. If the pointer is zero, there is no track data.
+- bb bb is a little endian pointer to a pattern order list for voice 4. If the pointer is zero, there is no track data.
+- cc cc is a little endian pointer to a pattern order list for voice 5. If the pointer is zero, there is no track data.
+- dd dd is a little endian pointer to a pattern order list for voice 6. If the pointer is zero, there is no track data.
+- ee ee is a little endian pointer to a pattern order list for voice 7. If the pointer is zero, there is no track data.
+
+Voice Command Format
+--------
+$00 - Phrase Termination/End of Subroutine
+This command's operation depends on whether or not it is inside a subroutine or not. If it is inside a subroutine, it exits the subroutine and song execution continues. Otherwise, the phrase is terminated. This affects all channels in the music: any other channels still playing are interrupted.
+
+%0xxxxxxx (%0yyyzzzz) - Note Duration + Staccato Control/Velocity
+($01-$7F ($01-$7F))
+- %xxxxxxx represents your note length (as seven bits) in tempo ticks.
+- If the highest bit of the second byte is not set and it is not zero, then a second set of parameters is defined as following...
+-- %yyy defines an index value to a table of values that indicate, in 256ths, how far along the note to play before keying it off.
+-- %zzzz, which is only defined if the highest bit of the byte is not set, defines the velocity. It is an index to a table of values that indicate the volume in a decibel-like number (due to the final volume calculation being multiplied by itself at the end).
+- Trying to define this a third time in a row will instead result in an invalid note.
+
+$80-$C5 - Note
+Plays a note and delays the channel for one note length before reading another command.
+
+$C6 - Tie
+Continues playing the previous note and delays the channel for one note length before reading another command.
+
+$C7-$CF - Rest
+Keys off the previous note and delays the channel for one note length before reading another command.
+NOTE: The way rests are originally detected in Kankichi-kun is exclusively through readahead.
+
+$D0-$D9 - Percussion
+Plays a percussion note.
+
+$DA xx - Instrument
+- xx is an instrument ID to an array of instruments. See Instrument Format above for the format.
+
+$DB %xyzzzzz - Panning
+- %x defines a phase inversion switch for the left channel.
+- %y defines a phase inversion switch for the right channel.
+- %zzzzz is five bits for the panning. This refers to an array of values to multiply the volume by after calculating the voice volume via various other parameters set by the VCMDs. Under normal circumstances, center is defined as $0A and the maximum value is $14.
+
+$DC xx yy - Panning Fade
+- xx defines the number of tempo ticks to fade for.
+- yy is the target pan value. Phase inversion is NOT taken into account here, thus only the low five bits should be used here.
+
+$DD xx yy zz - Pitch Slide to Note
+- xx defines the number of tempo ticks to delay the slide for.
+- yy defines the length of the pitch slide in tempo ticks.
+- zz is the target note.
+NOTE: This command is only detected in readahead. If encountered outside of readahead, it results in a crash instead due to a zero pointer.
+
+$DE xx yy zz - Vibrato On
+- xx is the number of tempo ticks to delay the vibrato for.
+- yy is the rate of the vibrato: specifically, how much to change the pitch on a per-tempo tick basis.
+- zz is the depth of the vibrato: that is, the maximum pitch offset to use. $00-$F0 are normal, but $F1 and up act more like said value ANDed by $0F and multiplied by $0100, meaning the highest values have drastic differences compared to the lower ones.
+
+$DF - Vibrato Off
+Disables vibrato set by VCMD $DE.
+
+$E0 xx - Song Volume
+- xx is the song volume value. This sets the volume for all of the channels in the song. The value used is a decibel-like value due to the final volume being multiplied by itself to get the final result.
+
+$E1 xx yy zz - Song Volume Fade
+- xx defines the number of tempo ticks to fade for.
+- yy is the target song volume.
+
+$E2 xx - Tempo
+- xx defines one tempo tick as one timer 0 tick multiplied by 256/x. Zero freezes the song.
+
+$E3 xx yy - Tempo Fade
+- xx defines the number of tempo ticks to fade for.
+- yy is the target tempo.
+
+$E4 xx - Global Absolute Transposition
+- xx is a signed value defining the number of semitones to transpose subsequent notes. Note that this affects all channels, not just one channel.
+
+$E5 xx yy zz - Tremolo On
+- xx is the number of tempo ticks to delay the tremolo for.
+- yy is the rate of the tremolo: specifically, how much to change the volume on a per-tempo tick basis.
+- zz is the depth of the tremolo: that is, the maximum volume offset to use.
+NOTE: This command does not properly function due to an off-by-one error in the memory location references for the volume offset per tempo tick.
+
+$E6 - Tremolo Off
+Disables tremolo set by VCMD $E5.
+NOTE: This command does not properly function due to an off-by-one error in the memory location references for the volume offset per tempo tick.
+
+$E7 xx - Volume
+- xx is the volume value. The value used is a decibel-like value due to the final volume being multiplied by itself to get the final result.
+
+$E8 xx yy - Volume Fade
+- xx defines the number of tempo ticks to fade for.
+- yy is the target volume.
+
+$E9 xx xx yy - Subroutine
+- xx xx is a little endian pointer containing the section of music to play.
+- yy is the number of times to loop the sub-routine.
+NOTE: No nesting is allowed.
+
+$EA xx - Vibrato Fade In
+- xx is the number of tempo ticks to fade the vibrato for.
+The moment this command is executed, the depth is faded in from zero. 
+
+$EB xx yy zz - Note Pitch Envelope To
+This command is applied to all subsequent notes until turned off or overwritten.
+- xx is the number of tempo ticks to delay before applying the pitch envelope.
+- yy is the length of the pitch slide in tempo ticks.
+- zz is a signed offset in semitones to slide the note to.
+
+$EC xx yy zz - Note Pitch Envelope From
+This command is applied to all subsequent notes until turned off or overwritten.
+- xx is the number of tempo ticks to delay before applying the pitch envelope.
+- yy is the length of the pitch slide in tempo ticks.
+- zz is a signed offset in semitones to slide the note from: that is, unlike Note Pitch Envelope To (VCMD $EB), this is a starting note offset, rather than an end of pitch envelope note offset.
+
+$ED - Invalid (supposed to be Note Pitch Envelope Off)
+The code is present, but the pointer is zero.
+
+$EE xx - Fine Tune
+- xx defines the amount to shift the pitch up. This is in 256ths of a semitone, albeit done via measuring the distance between note and multiplying it by this value.
+
+$EF %xxxxxxxx yy zz - Echo Enable Bits and Volume
+- %xxxxxxxx defines the channels to turn on for the echo (one per bit), which translates to a direct write to the EON DSP register.
+- yy defines a value for EVOLL DSP register.
+- zz defines a value for EVOLR DSP register.
+
+$F0 - Echo Off
+This disables echo for ALL channels, as well as zeroing out the echo volume and disabling echo writes. 
+
+$F1 xx yy zz - Echo Parameter Setup
+- xx defines a value for the EDL DSP register.
+- yy defines a value for the EFB DSP register.
+- zz defines an ID to an array of FIR coefficient values.
+
+$F2 xx yy zz - Echo Volume Fade
+- xx defines the number of tempo ticks to fade for.
+- yy defines the target value for EVOLL DSP register.
+- zz defines the target value for EVOLR DSP register.
+
+$F3-$FF - Invalid
+Crashes due to using pointers outside of the command table.
+
+Percussion Format
+--------
+xx yy zz aa bb cc
+- xx is a direct write to the VxSRCN DSP register.
+- yy is a direct write to the VxADSR1 DSP register.
+- zz is a direct write to the VxADSR2 DSP register.
+- aa is a direct write to the VxGAIN DSP register.
+- bb is a pitch base multiplier.
+- cc is the note to play the percussion note at.
+
+Instrument Format
+--------
+xx yy zz aa bb
+- xx is a direct write to the VxSRCN DSP register.
+- yy is a direct write to the VxADSR1 DSP register.
+- zz is a direct write to the VxADSR2 DSP register.
+- aa is a direct write to the VxGAIN DSP register.
+- bb is a pitch base multiplier.

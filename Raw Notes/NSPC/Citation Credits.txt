@@ -1,0 +1,14 @@
+Citation credits for sound driver research:
+
+loveemu's sound driver disassembly collection:
+https://github.com/loveemu/vgm-disasm/tree/master/snes/NSPC
+
+vgmtrans:
+https://github.com/vgmtrans/vgmtrans/blob/master/src/main/formats/NinSnesSeq.cpp
+
+Super Famicom Wiki:
+https://wiki.superfamicom.org/nintendo-music-format-(n-spc)
+
+Game Boy Development Manual - Super Game Boy Sound:
+https://archive.org/details/GameBoyProgManVer1.1/page/n187/mode/2up
+See pages 187-213
