@@ -58,7 +58,7 @@ Plays a percussion note.
 $DA xx - Instrument
 - xx is an instrument ID to an array of instruments. See Instrument Format above for the format.
 
-$DB %xyzzzzz - Panning
+$DB %xy?zzzzz - Panning
 - %x defines a phase inversion switch for the left channel.
 - %y defines a phase inversion switch for the right channel.
 - %zzzzz is five bits for the panning. This refers to an array of values to multiply the volume by after calculating the voice volume via various other parameters set by the VCMDs. Under normal circumstances, center is defined as $0A and the maximum value is $14.
