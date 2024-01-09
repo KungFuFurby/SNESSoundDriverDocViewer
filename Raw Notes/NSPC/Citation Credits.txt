@@ -1,5 +1,8 @@
 Citation credits for sound driver research:
 
+SNESLab article:
+https://sneslab.net/wiki/N-SPC_Engine
+
 loveemu's sound driver disassembly collection:
 https://github.com/loveemu/vgm-disasm/tree/master/snes/NSPC
 
