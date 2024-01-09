@@ -2,6 +2,8 @@ Usage is separated by CPUIO register.
 
 CPUIO0 ($2140/$F4)
 -------------------
+Polling rate: Once per SFX tempo tick.
+
 Output: Current SFX ID playing on voice 4. Zeroed out once the SFX is done playing.
 
 Input:
@@ -22,6 +24,8 @@ Does absolutely nothing.
 
 CPUIO1 ($2141/$F5)
 -------------------
+Polling rate: Once per SFX tempo tick.
+
 Output: Current SFX ID playing on voice 7. Zeroed out once the SFX is done playing.
 
 Input:
@@ -44,10 +48,10 @@ Plays a girder SFX on voice 7. This is a two note hardcoded ASM SFX.
 $FF - Stop Sound + Load New Data
 Stops the sound, then jumps to a modified copy of the IPL Boot ROM. The biggest difference is that unlike a standard IPL Boot ROM, this one doesn't have a jump anywhere case after you're done loading.
 
-TODO record protocol (nearly identical to the IPL Boot ROM with a couple of differences or so)
-
 CPUIO2 ($2142/$F6)
 -------------------
+Polling rate: Once per music tempo tick.
+
 Output: Current music ID playing. Zeroed out once the music is done playing.
 
 Input:
@@ -65,6 +69,8 @@ Fades out the music by sliding the song volume to zero over 240 tempo ticks.
 
 CPUIO3 ($2143/$F7)
 -------------------
+Polling rate: Once per SFX tempo tick.
+
 Output: Current SFX ID playing on voice 6. Zeroed out once the SFX is done playing.
 
 $00 - NOP

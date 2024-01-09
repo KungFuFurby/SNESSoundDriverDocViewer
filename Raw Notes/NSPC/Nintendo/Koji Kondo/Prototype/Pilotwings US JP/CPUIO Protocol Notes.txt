@@ -4,6 +4,8 @@ Usage is separated by CPUIO register.
 
 CPUIO0 ($2140/$F4)
 -------------------
+Polling rate: Once per music tempo tick.
+
 Output: Current music ID playing. Zeroed out once the music is done playing.
 
 Input:
@@ -15,6 +17,8 @@ Input:
 
 CPUIO1 ($2141/$F5)
 -------------------
+Polling rate: Once per SFX tempo tick.
+
 Output: Current SFX playing on voice 2.
 
 Input:
@@ -23,8 +27,6 @@ Does absolutely nothing.
 
 $FF - Stop Sound + Load New Data
 Stops the sound, then jumps to a modified copy of the IPL Boot ROM. The biggest difference is that unlike a standard IPL Boot ROM, this one doesn't have a jump anywhere case after you're done loading.
-
-TODO refer to Super Mario World
 
 xy - Play SFX Sequence
 ($01-$FE)
@@ -38,6 +40,8 @@ xy - Play SFX Sequence
 
 CPUIO2 ($2142/$F6)
 -------------------
+Polling rate: Once per SFX tempo tick.
+
 Output: Current engine control value. Zeroed out when the highest bit is set.
 
 $00 - NOP
@@ -62,6 +66,8 @@ Basically acts as a reset for the aircraft engine back to default settings, in a
 
 CPUIO3 ($2143/$F7)
 -------------------
+Polling rate: Once per SFX tempo tick.
+
 Output: Current SFX ID playing on voice 3. Zeroed out once the SFX is done playing.
 
 $00, $03-$FF - NOP

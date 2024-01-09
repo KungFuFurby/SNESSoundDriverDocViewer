@@ -1,0 +1,3 @@
+- Opcodes in use are referencing 16-bit memory locations instead of 8-bit memory locations (which usually refer to the zero page or one page).
+- Has a BRA opcode after incrementing the pointer.
+- Clears the latches and doesn't jump to the pointer at CPUIO2 and CPUIO3: instead, a RET opcode is used.
