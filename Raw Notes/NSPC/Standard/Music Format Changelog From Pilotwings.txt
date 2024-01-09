@@ -15,6 +15,7 @@ Disables Fast Forward and continues playing the song normally.
 -- Percussion are relocated from $D0-$D9 to $CA-$DF.
 -- Command IDs $DA-$DC are offset by six IDs to $E0-$E2.
 -- Command IDs $DE-$E4 are offset by five IDs to $E3-$E9.
+-- Command IDs $E5-$F2 are offset by six IDs to $EB-$F8.
 -- Pitch Slide To Note is moved from command ID $DD to command ID $F9.
 
 - Six new command IDs are defined.
