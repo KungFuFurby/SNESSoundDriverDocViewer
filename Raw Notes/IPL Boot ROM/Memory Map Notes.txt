@@ -1,0 +1,4 @@
+This is the starting variable ARAM memory map as used by the IPL Boot ROM. Only two bytes are used, but the rest of the zero page minus the ports are cleared.
+
+$00-$01 - Current pointer being used by the IPL Boot ROM.
+$02-$EF - Cleared on initialization, but otherwise unused.

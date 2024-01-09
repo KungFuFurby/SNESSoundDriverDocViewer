@@ -1,0 +1,70 @@
+This is a step-by-step process of SNES <-> SPC700 communication.
+
+Step 1
+SPC700 Initializes Itself
+----------------------------------
+CPUIO0 ($2140/$F4) Output To SNES: $AA
+CPUIO1 ($2141/$F5) Output To SNES: $BB
+
+Output (from CPUIO0 to CPUIO3):
+$AA $BB ?? ??
+
+The very first step is for the SPC700 to output two values to CPUIO0 and CPUIO1. The SNES must ensure that the SPC700 has finished initializing itself (and clearing out memory locations $0000-$00EF) by confirming these two values are present in those two registers: only then may the SNES send commands. 
+
+Step 2
+Execute Command
+----------------------------------
+CPUIO1 ($2141/$F5) Input From SNES: Command ID. If zero, then it jumps to the pointer stored in CPUIO2 & CPUIO3. Otherwise, it executes step 3.
+CPUIO2 & CPUIO3 Input from SNES: Little endian pointer.
+CPUIO0 ($2140/$F4) Input From SNES: $CC (Send last! This will start execution of the command once sent.)
+
+Input (from CPUIO0 to CPUIO3):
+$CC xx yy yy
+- xx is a command ID. If zero, then it jumps to yy yy. Otherwise, it executes step 3 with yy yy as the starting pointer of the next block.
+- yy yy is a little endian pointer.
+
+Upon sending $CC to CPUIO0...
+CPUIO0 ($2140/$F4) Output To SNES: $CC
+
+Output (from CPUIO0 to CPUIO3):
+$CC $BB ?? ??
+
+Step 3
+Receive Block from SNES
+----------------------------------
+CPUIO1 ($2141/$F5) Input From SNES: Input byte.
+CPUIO0 ($2140/$F4) Input From SNES: Byte ID. (Send last! Once a byte ID is sent and it is recognized in a comparison, the input byte will be read.) Zero must be sent first to indicate that this is the first block. If this is greater (from a signed comparison, thus no greater than $80 more than the expected value: otherwise, the command won't work) than the value that was last sent to the SNES, then we go to step 4.
+
+Input (from CPUIO0 to CPUIO3):
+xx yy ?? ??
+- xx is a byte counter. Zero must be sent first to indicate that this is the first block. If this is greater (from a signed comparison, thus no greater than $80 more than the expected value: otherwise, the command won't work) than the value that was last sent to the SNES, then we go to step 4.
+- yy is the input byte to send. The pointer is incremented.
+
+Upon sending the byte ID to CPUIO0...
+CPUIO0 ($2140/$F4) Output To SNES: Next byte ID to send over. This is incremented per byte sent.
+
+Output (from CPUIO0 to CPUIO3):
+xx $BB ?? ??
+- xx is the next byte ID to send over. This is incremented per byte sent.
+
+Step 4
+Terminate Block
+----------------------------------
+CPUIO1 ($2141/$F5) Input From SNES: Command ID. If zero, then it jumps to the pointer stored in CPUIO2 & CPUIO3. Otherwise, it executes step 3.
+CPUIO2 & CPUIO3 Input from SNES: Little endian pointer.
+CPUIO0 ($2140/$F4) Input From SNES: Byte ID. (Send last!) Must be greater (from a signed comparison, thus no greater than $80 more than the expected value: otherwise, the command won't work) than the last value that the SPC700 sent to the SNES. Note that if this is zero (only occurs if the counter was previously $80-$FF), you'll instantly send a byte if CPUIO1 is non-zero and start your next block right away (the zero case still jumps as per the usual).
+
+Input (from CPUIO0 to CPUIO3):
+xx yy zz zz
+- xx must be greater (from a signed comparison, thus no greater than $80 more than the expected value: otherwise, the command won't work) than the last value that the SPC700 sent to the SNES. Note that if this is zero (only occurs if the counter was previously $80-$FF), you'll instantly send a byte if yy is non-zero and start your next block right away (the zero case still jumps as per the usual).
+- yy is a command ID. If zero, then it jumps to zz zz. Otherwise, it executes step 3 with zz zz as the starting pointer of the next block.
+- zz zz is a little endian pointer.
+
+Upon sending the byte ID to CPUIO0...
+CPUIO0 ($2140/$F4) Output To SNES: Byte ID that was sent to terminate the block.
+
+Output (from CPUIO0 to CPUIO3):
+xx $BB ?? ??
+- xx is the ID that was sent to terminate the block.
+
+Note that if you choose to jump to the program, then depending on the program, your acknowledgement from the IPL Boot ROM may end up being very short. Thus, unless your program accounts for this, make sure to disable your interrupts prior to performing this critical step.

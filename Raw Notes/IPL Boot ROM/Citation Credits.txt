@@ -1,0 +1,12 @@
+SNESLab wiki:
+https://sneslab.net/wiki/SPC700/IPL_ROM
+https://sneslab.net/wiki/SPC700/Driver_Upload
+
+nocash's Fullsnes Documentation:
+https://problemkaputt.de/fullsnes.htm#snesapumaincpucommunicationport
+
+Anomie's SPC700 Doc:
+https://www.romhacking.net/documents/197
+
+Super Famicom Wiki:
+https://wiki.superfamicom.org/spc700-reference#ipl-rom-1567
