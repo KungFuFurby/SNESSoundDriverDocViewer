@@ -1,0 +1,67 @@
+This is the SFX format for N-SPC/Koji Kondo. The command IDs are somewhat similar to N-SPC at first, but the functionality is actually different in some areas.
+
+SFX are headerless and only take up one voice. Tempo is set to a hardcoded value for all SFX instances.
+
+SFX Instrument Format
+--------
+xx yy zz aa bb cc dd ee ff
+- xx is a direct write to the VxVOLL DSP register.
+- yy is a direct write to the VxVOLR DSP register.
+- zz is a direct write to the VxPITCHL DSP register.
+- aa is a direct write to the VxPITCHH DSP register.
+- bb is a direct write to the VxSRCN DSP register.
+- cc is a direct write to the VxADSR1 DSP register.
+- dd is a direct write to the VxADSR2 DSP register.
+- ee is a direct write to the VxGAIN DSP register.
+- ff is a pitch base multiplier.
+
+SFX Percussion Format
+--------
+Identical to the music percussion's due to recycling some note code (and thus uses the music percussion array's). See Music Format Notes for more details.
+
+Voice Command Format
+--------
+$00 - End of SFX
+Terminates the SFX.
+
+%0xxxxxxx (%0yyyyyyy) (%0zzzzzzz) - Note Duration + Set Volume
+($01-$7F ($00-$7F) ($00-$7F))
+- %xxxxxxx is the length of the note in tempo ticks.
+- %yyyyyyy, if defined by clearing the highest bit, represents the volume of the note as a direct write to the VxVOLL DSP register. If %zzzzzzz is undefined, then it also represents a direct write to the VxVOLR DSP register.
+- %zzzzzzz, if defined by clearing the highest bit, represents the right volume of a note as a direct write to the VxVOLR DSP register.
+
+$80-$C5 - Note
+Plays a note and delays the channel for one note length before reading another command.
+
+$C6-$CF - Retrigger Note
+Retriggers the previous note and delays the channel for one note length before reading another command.
+
+Note that as a side effect of this, there is no tie or rest command. Rests can be emulated via a zero volume note. Ties... well, officially they're not supported at all, but if the pitch slide length equals or exceeds the note duration, then the note won't be keyed off once the note length has elapsed. 
+
+$D0-$D9 - Percussion
+Plays a percussion note. Unlike SFX, percussion uses the same set that the music uses, and thus has the same instrument format as that.
+
+$DA %xyyyyyyy (%xyyyyyyy...) - Instrument
+- %x is a noise clock switch.
+-- If %x is cleared, %yyyyyyy is an instrument ID to an array of instruments. See SFX Instrument Format above for the format.
+-- If %x is set, %??yyyyy represents the noise clock rate. Another byte is fetched: it will keep fetching until it finds a cleared %x.
+
+$DB-$DC, $DE-$EA, $EC-$FE - Invalid Note
+Doesn't crash the sound driver, but does play an invalid note.
+
+$DD xx yy zz aa - Note + Pitch Slide To Note
+- xx is the starting note.
+- yy defines the number of tempo ticks to delay the slide for... at least in theory. In reality, this never works, and the pitch slide executes instantly in all cases.
+- zz defines the length of the pitch slide in tempo ticks. If this is equal or greater than the overall note length, the note won't key off at the end, thus allowing for multiple pitch envelopes to be chained at once.
+- aa is the target note.
+
+$EB xx yy zz - Note Pitch Envelope To
+- xx is the number of ticks to delay before applying the pitch envelope... at least in theory. In reality, this never works, and the pitch slide executes instantly in all cases.
+- yy is the length of the pitch slide in tempo ticks. If this is equal or greater than the overall note length, the note won't key off at the end, thus allowing for multiple pitch envelopes to be chained at once.
+- zz is the target note.
+
+$FF - Restart SFX (CPUIO0 SFX Only)
+Restarts the SFX from the beginning.
+
+$FF - Jump Back One Byte (CPUIO3 SFX Only)
+Normally, the pointer is incremented upon reading the command. This causes the inverse to happen, and sets the pointer to one byte before this command. 

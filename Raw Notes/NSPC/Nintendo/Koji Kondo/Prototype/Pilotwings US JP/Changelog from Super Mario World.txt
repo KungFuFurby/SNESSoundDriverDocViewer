@@ -2,3 +2,12 @@
 - Play Music was moved from CPUIO2 ($2142/$F6) to CPUIO0 ($2140/$F4), and now occupies the lowest five bits unconditionally, instead of being used when the highest bit is zero and the ID taking up seven bits.
 - SFX Sequence Set 1 was effectively moved from CPUIO0 ($2140/$F4) to the low nibble of CPUIO1 ($2141/$F5).
 - SFX Sequence Set 1 was effectively moved from CPUIO3 ($2143/$F7) to the high nibble of CPUIO1 ($2141/$F5).
+
+(SFX Format)
+- $DA command no longer supports noise. This is the new definition...
+$DA xx - Instrument
+- xx is an instrument ID to an array of instruments.
+
+- $FF command was redefined for all SFX instances. This is the new command...
+$FF xx - Jump to SFX ID
+- xx is the SFX ID to jump to. The array used depends on which set of sequences you're using, as the two of them use different sets.
