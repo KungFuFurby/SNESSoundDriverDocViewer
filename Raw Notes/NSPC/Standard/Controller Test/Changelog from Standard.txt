@@ -1,0 +1,1 @@
+- Contains a code optimization for handling volume, panning and pitch fades.

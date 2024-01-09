@@ -1,0 +1,2 @@
+- Starts with a JMP opcode.
+- A NOP is in between the first and second opcodes of the actual program.

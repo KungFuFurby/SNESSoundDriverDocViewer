@@ -1,0 +1,1 @@
+- During readahead, if the command ID read is not zero or negative and the Y register offset becomes negative, it assumes that it hit a rest.

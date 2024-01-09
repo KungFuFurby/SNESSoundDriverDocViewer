@@ -1,0 +1,25 @@
+This is the original CPUIO protocol for Kankichi-kun that many different sound drivers inherit off of.
+
+Usage is technically separated by CPUIO register... though only one is fully defined.
+
+CPUIO0 ($2140/$F4)
+-------------------
+Polling rate: Once per music tempo tick.
+
+Output: Current music ID playing. Zeroed out once the music is done playing.
+
+Input:
+$00 - Stop Music
+Initializes an invalid phrase pointer, then stops the previous piece of music. This is not compatible with the resume command, as it is irrevocable, unlike the other one.
+
+$01-$EF, $F2-$FE - Play Music
+Stops a previous piece of music, then plays a piece of music by the ID specified in the command.
+
+$F0 - Pause Music
+Stops music, allowing it to be resumed later.
+
+$F1 - Continue Music
+Resumes a paused song.
+
+$FF - Load New Data
+Jumps to a modified copy of the IPL Boot ROM. The biggest difference is that unlike a standard IPL Boot ROM, this one doesn't have a jump anywhere case after you're done loading.

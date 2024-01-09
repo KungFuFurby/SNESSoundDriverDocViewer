@@ -1,0 +1,5 @@
+(CPUIO0 ($2140/$F4) Protocol)
+- The $FF command was overwritten because it now goes to a copy of the IPL Boot ROM instead of a loader.
+$FF - Stop Sound + Go To IPL Boot ROM Copy
+
+- Missing an opcode in the now bypassed loader at the beginning (specifically, MOV A, #$AA, which would be sent to the SNES via CPUIO0), just past the *Ver S1.20* string.

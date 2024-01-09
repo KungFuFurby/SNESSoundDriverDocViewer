@@ -48,3 +48,6 @@ Disables Fast Forward and continues playing the song normally.
 The instrument format now looks like this (dd is new and is defined below)
 %xyyyyyyy zz aa bb cc dd
 - dd is a fractional pitch base multiplier, defined in 256ths.
+
+(Other)
+- Readahead now accounts for the subroutine command (Command ID $E9/$EF) by jumping to it.

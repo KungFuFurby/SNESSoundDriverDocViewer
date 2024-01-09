@@ -1,0 +1,1 @@
+- Acknowledges to CPUIO1 as a de-facto mirror of CPUIO0, except the feedback is slightly faster: when a music ID is initialized, CPUIO0 acknowledges in a couple of tempo ticks, whereas CPUIO1 acknowledges immediately upon being read.
