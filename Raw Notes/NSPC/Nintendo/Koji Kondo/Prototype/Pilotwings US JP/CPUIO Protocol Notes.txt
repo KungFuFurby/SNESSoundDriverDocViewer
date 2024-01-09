@@ -27,6 +27,7 @@ Stops the sound, then jumps to a modified copy of the IPL Boot ROM. The biggest 
 TODO refer to Super Mario World
 
 xy - Play SFX Sequence
+($01-$FE)
 - x is a four-bit/one nibble SFX ID for voice 7.
 -- $E mutes all other channels sound upon playing the SFX (including the music, which causes new values to not be acknowledged). Any other ID played afterwards unmutes the music. This also cannot be interrupted by other SFX value entered here except for $F.
 -- $1 cannot be interrupted by other SFX in this same area except for $E and $F.
@@ -43,14 +44,17 @@ $00 - NOP
 Does absolutely nothing.
 
 %0xyyyyyy - Engine Control
+($01-$7F)
 Plays an engine noise on voices 4 and 5.
 - %x, when starting the aircraft engine, determines what kind of noise it makes. A different command (other than NOP) must be used before changing the engine noise.
 
 %10xxxxxx - Break
+($80-$BF)
 Plays a break noise on voice 5.
 - %xxxxxx only does something different when set to $01, which is a slight pitch variant. All other cases are identical to $00.
 
 %11?????? - Skid
+($C0-$FE)
 Causes randomly generated BRR wind noise frequency notes to be generated for voice 5.
 
 $FF - Stop Engine

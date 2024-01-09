@@ -8,13 +8,16 @@ $00 $00 - End of Song
 Terminates the song.
 
 %0xxxxxxx $00 yy yy - Jump x Times
+($01-$7F $00 yy yy)
 - %xxxxxxx is the number of times to jump.
 - yy yy is a little endian pointer to a phrase to jump to.
 
 %1??????? $00 xx xx - Always Jump
+($80-$FF $00 xx xx)
 - xx xx is a little endian pointer to a phrase to jump to.
 
 xx xx - Play Pattern
+($00-$FF $01-$FF)
 - xx xx is a little endian pointer to a set of eight pointers to track data, one for each voice.
 
 Pattern Entry Format
