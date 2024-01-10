@@ -30,11 +30,11 @@ Stops the sound, then jumps to a modified copy of the IPL Boot ROM. The biggest 
 
 xy - Play SFX Sequence
 ($01-$FE)
-- x is a four-bit/one nibble SFX ID for voice 7.
+- x is a four-bit/one nibble SFX ID to play on voice 7.
 -- $E mutes all other channels sound upon playing the SFX (including the music, which causes new values to not be acknowledged). Any other ID played afterwards unmutes the music. This also cannot be interrupted by other SFX value entered here except for $F.
 -- $1 cannot be interrupted by other SFX in this same area except for $E and $F.
 -- $5 plays nothing, although it still works for unmuting music and other channels.
-- y is a four-bit/one nibble SFX ID for voice 2.
+- y is a four-bit/one nibble SFX ID to play on voice 2.
 -- Some SFX are not interruptible. In order of uninterruptibility priority with other SFX IDs, we have $A, $7 ($5 is allowed to overwrite $7 in this instance), then $9.
 -- $F plays nothing.
 

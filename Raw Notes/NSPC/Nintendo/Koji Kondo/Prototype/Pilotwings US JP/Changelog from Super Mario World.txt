@@ -1,7 +1,7 @@
 (CPUIO Protocol)
 - Play Music was moved from CPUIO2 ($2142/$F6) to CPUIO0 ($2140/$F4), and now occupies the lowest five bits unconditionally, instead of being used when the highest bit is zero and the ID taking up seven bits.
-- SFX Sequence Set 1 was effectively moved from CPUIO0 ($2140/$F4) to the low nibble of CPUIO1 ($2141/$F5).
-- SFX Sequence Set 1 was effectively moved from CPUIO3 ($2143/$F7) to the high nibble of CPUIO1 ($2141/$F5).
+- SFX Sequence Set 1 was effectively moved from CPUIO0 ($2140/$F4) to the low nibble of CPUIO1 ($2141/$F5). It was also effectively relocated from voice 4 to voice 7.
+- SFX Sequence Set 2 was effectively moved from CPUIO3 ($2143/$F7) to the high nibble of CPUIO1 ($2141/$F5). It was also effectively relocated from voice 6 to voice 2.
 
 (SFX Format)
 - $DA command no longer supports noise. This is the new definition...
