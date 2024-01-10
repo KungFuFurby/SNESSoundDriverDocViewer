@@ -47,7 +47,7 @@ $3CC - Used when searching for the next free voice bit for CPUIO2 SFX.
 $3CD - Voice bits in use by CPUIO3 SFX.
 $3CE - Used when searching for the next free voice bit for CPUIO3 SFX.
 $3CF - Voice bits in use by CPUIO1 SFX.
-$3D0,$3D2,$3D4,$3D6,$3D8,$3DA,$3DC,$3DE - Panning parameters for SFX instance.
+$3D0,$3D2,$3D4,$3D6,$3D8,$3DA,$3DC,$3DE - Panning parameters for SFX instance, one byte per voice.
 $3D1,$3D3,$3D5,$3D7,$3D9,$3DB,$3DD,$3DF - Unused.
 $3E0 - Used when searching for the next free voice bit for CPUIO1 SFX.
 $400,$402,$404,$406,$408,$40A,$40C - Unused.

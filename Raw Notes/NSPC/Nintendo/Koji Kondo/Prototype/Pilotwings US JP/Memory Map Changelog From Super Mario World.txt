@@ -37,7 +37,7 @@ $210,$212,$214,$216,$218,$21A,$21C,$21E -> $220,$222,$224,$226,$228,$22A,$22C,$2
 $211,$213,$215,$217,$219,$21B,$21D,$21F -> $210,$212,$214,$216,$218,$21A,$21C,$21E
 
 $382 -> $0D
-$383-$385 -> $38F-$391
+$384-$385 -> $390-$391
 
 New/Unused memory map locations:
 $18-$1B - Unused.
@@ -77,7 +77,6 @@ $38B - CPUIO3 SFX note duration for CPUIO3 SFX ID $01.
 $38C - Contains pause SFX-triggered FLG bits to set.
 $38D - Stores the upper four bits of CPUIO1's SFX ID that was just sent... after an XCN opcode.
 $38E - Stores the upper four bits of CPUIO1's SFX ID currently playing... after an XCN opcode.
-$38F - Tick counter for the upper four bits of CPUIO1 SFX to initialize itself.
 $392 - Two different purposes depending on the CPUIO3 SFX ID: it's a fixed offset to a note array on CPUIO3 SFX ID $01, and it's a note duration for CPUIO3 SFX ID $02.
 $393 - CPUIO3 saved SFX note duration.
 $394-$3DF - Unused.

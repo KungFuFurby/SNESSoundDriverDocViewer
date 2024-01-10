@@ -6,15 +6,12 @@ Restored & relocated compared to Super Mario World:
 $389 -> $3C3
 
 NOTE: All SFX sequence memory locations are implied to be new because they are no longer hardcoded to a single channel, as they have been modified to be dynamic. This specifically affects (going by Pilotwings, not Super Mario World)...
-$0D -> TODO
-$D3-$D4 -> TODO
-$DD-$DE -> TODO
-$380-$381 -> TODO
-$384-$385 -> TODO
-$38F -> TODO
+$0D -> $3A5
+$D3-$D4 -> $394-$395
+$DD-$DE -> $39E-$39F
+$380-$381 -> $3B4-$3B5
+$38F -> $3AF
 Implied relocations are shown above, but again, they're technically no longer hardcoded to a single channel. Plus, the channels were relocated when moving from Super Mario World to Pilotwings.
-
-TODO implied destination location (going by raw channel ID)
 
 Same as standard Kankichi source build... (NOTE: Scratch RAM also counts)
 $00-$0C
@@ -50,14 +47,14 @@ $1D0-$1FF - Unused.
 $250-$27F - Unused.
 $2E1,$2E3,$2E5,$2E7,$2E9,$2EB,$2ED,$2EF - Unused.
 $2F1,$2F3,$2F5,$2F7,$2F9,$2FB,$2FD,$2FF - Unused.
-$390-$39F - SFX sequence pointer.
-$3A0,$3A2,$3A4,$3A6,$3A8,$3AA,$3AC,$3AE - SFX ID currently playing. Note that the IDs are actually merged across sets: one of them is offset by $10 when called from CPUIO3.
-$3A1,$3A3,$3A5,$3A7,$3A9,$3AB,$3AD,$3AF - Tick counter for a SFX sequence to initialize itself.
-$3B0,$3B2,$3B4,$3B6,$3B8,$3BA,$3BC,$3BE - SFX sequence note duration.
-$3B1,$3B3,$3B5,$3B7,$3B9,$3BB,$3BD,$3BF - SFX sequence saved note duration.
+$390-$39F - SFX sequence pointer, one word per voice.
+$3A0,$3A2,$3A4,$3A6,$3A8,$3AA,$3AC,$3AE - SFX ID currently playing, one byte per voice. Note that the IDs are actually merged across sets: one of them is offset by $10 when called from CPUIO3.
+$3A1,$3A3,$3A5,$3A7,$3A9,$3AB,$3AD,$3AF - Tick counter for a SFX sequence to initialize itself, one byte per voice.
+$3B0,$3B2,$3B4,$3B6,$3B8,$3BA,$3BC,$3BE - SFX sequence note duration, one byte per voice.
+$3B1,$3B3,$3B5,$3B7,$3B9,$3BB,$3BD,$3BF - SFX sequence saved note duration, one byte per voice.
 $3C0 - Current SFX slot being processed.
 $3C1 - Current SFX voice bit being processed.
-$3C2 - SFX voice DSP register reference
+$3C2 - SFX voice DSP register reference.
 $3C4 - SFX slot to disable when CPUIO3 is negative
 $3C5 - SFX voice bit to disable when CPUIO3 is negative
 $3C6 - Playback flag for music IDs $01-$06. When set to a non-zero value, those IDs instead fade out the previous IDs.
