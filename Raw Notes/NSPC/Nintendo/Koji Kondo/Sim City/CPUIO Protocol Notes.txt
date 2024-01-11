@@ -1,0 +1,61 @@
+These sets of notes are also new, because they're not really relevant to either Super Mario World or Pilotwings.
+
+Usage is separated by CPUIO register.
+
+CPUIO0 ($2140/$F4)
+-------------------
+Polling rate: Once per music tempo tick.
+
+Output: Current music ID playing. Zeroed out once the music is done playing.
+
+Input:
+$00 - NOP
+Does absolutely nothing.
+
+$01-$EF, $F2-$FF - Play Music
+- $01-$06 will run like $F1 if %x is set and %y is cleared.
+
+$F0 - Stop Music
+
+$F1 - Fade Out
+Fades out the song volume over 160 tempo ticks.
+
+CPUIO1 ($2141/$F5)
+-------------------
+Polling rate: Once per music and SFX tempo tick.
+
+Output: Always zero after initialization.
+
+Input: %??????xy
+- %x, when set, turns music IDs $01-$06 on. Note that you must manually trigger a piece of music after this: there is no pausing or unpausing of music through this method.
+- %y, when set, stops the piece of music currently playing and turns music IDs $01-$06 off. Instead, when setting the music ID to these IDs, the previous piece of music will fade out (like $F1). This has priority over turning the music on.
+
+CPUIO2 ($2142/$F6)
+-------------------
+Polling rate: Once per SFX tempo tick.
+
+Output: Always zero after initialization.
+
+Input:
+$00 - NOP
+
+xx - Play SFX Sequence Set 1
+($01-$FF)
+- xx is a SFX ID to play on a dynamically allocated voice. These can trigger other SFX IDs, and more than one of the same SFX instance can run at the same time.
+
+CPUIO3 ($2143/$F7)
+-------------------
+Polling rate: Once per SFX tempo tick.
+
+Output: Always zero after initialization.
+
+Input:
+$00 - NOP
+
+%0xxxxxxx - Play SFX Sequence Set 2
+($01-$7F)
+- %xxxxxxx is a SFX ID to play on a dynamically allocated voice. These can trigger other SFX IDs. Retriggering the same SFX ID restarts the SFX on the voice it was allocated on.
+
+%1??????? - Stop SFX On Voice That Last Played SFX Sequence Set 2 ID $09
+($80-$FF)
+Stops a SFX instance that last played on the voice that triggered SFX Sequence 2 ID $09.

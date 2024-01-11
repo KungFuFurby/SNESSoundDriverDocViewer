@@ -1,0 +1,14 @@
+- Channel allocation is dynamic instead of being fixed.
+
+- A second array has been added on, in addition to the standard little endian pointer. It contains the next SFX ID to play. If the array reference value is zero, no extra SFX is played.
+
+- The command IDs are based off of modern N-SPC. That means these movements...
+-- Instrument is moved from VCMD $DA to VCMD $E0.
+-- Note Pitch Envelope To is moved from VCMD $EB to VCMD $F1.
+-- Note + Pitch Slide To Note is moved from VCMD $DD to VCMD $F9.
+
+- The $FF command is identical to CPUIO0 SFX from Super Mario World. This means that it restarts the SFX.
+
+- Other changes, sorted by command...
+-- In Instrument Setup (Command $DA/$E0)...
+--- The pitch base fractional multiplier is explicitly zeroed out when a SFX instrument is set up. This is notable because one didn't exist before.

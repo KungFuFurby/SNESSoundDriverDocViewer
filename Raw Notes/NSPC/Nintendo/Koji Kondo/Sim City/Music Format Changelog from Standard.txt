@@ -1,0 +1,5 @@
+This is the first version to be used from N-SPC/Nintendo/Koji Kondo that uses standard Kankichi-kun as opposed to a prototype version. Tracing, thus, is done from standard Kankichi-kun instead of Pilotwings.
+
+(Music Format)
+- Command IDs $FB-$FE are cut. However, the fast forward phrase commands are still present.
+- Command $E5 (Song Volume) is not permitted to run if the song volume is being faded from a CPUIO command.
