@@ -1,0 +1,67 @@
+Same as standard Kankichi source build... (NOTE: Scratch RAM also counts)
+$00-$06 (TODO double check these)
+$08-$0C (TODO double check these, at least $08-$0B)
+$0E-$1A
+$30-$4E
+$50-$6A
+$70-$7F
+$80,$82,$84,$86,$88,$8A,$8C,$8E
+$90-$CF
+$100,$102,$104,$106,$108,$10A,$10C,$10E
+$200-$24F
+$280-$2DF
+$2E0,$2E2,$2E4,$2E6,$2E8,$2EA,$2EC,$2EE
+$2F0,$2F2,$2F4,$2F6,$2F8,$2FA,$2FC,$2FE
+$300-$38F
+
+Relocated compared to standard Kankichi source build... (NOTE: Scratch RAM also counts)
+N/A
+
+Same as the 1995-06-08 build of Star Fox 2...
+$07
+$0D bits 0 and 6-7
+$1C-$1D
+$1F
+$2C-$2D
+$D0-$DF
+$250,$252,$254,$256,$258,$25A,$25C,$25E
+$260,$262,$264,$266,$268,$26A,$26C,$26E
+$270-$27F
+$390-$3C3
+$3C6-$3CB
+$3CD-$3CF
+$3D0,$3D2,$3D4,$3D6,$3D8,$3DA,$3DC,$3DE
+$3E0-$3EF
+$3F1
+$3F4-$3F5
+$3F8-$3F9
+$3FB
+
+Relocated compared to the 1995-06-08 build of Star Fox 2...
+N/A
+
+New/Unused memory map locations:
+$1B - Likely unused.
+$1E - Likely unused.
+$20-$2B - Likely unused.
+$2E-$2F - Likely unused.
+$6B-$6F - Likely unused.
+$81,$83,$85,$87,$89,$8B,$8D,$8F - Likely unused.
+$E0-$EF - Likely unused.
+
+$101,$103,$105,$107,$109,$10B,$10D,$10F - Likely unused.
+$110-$1CF - Reserved for stack.
+$1D0-$1FF - Likely unused.
+
+$251,$253,$255,$257,$259,$25B,$25D,$25F - Likely unused.
+$261,$263,$265,$267,$269,$26B,$26D,$26F - Likely unused.
+$2E1,$2E3,$2E5,$2E7,$2E9,$2EB,$2ED,$2EF - Likely unused.
+$2F1,$2F3,$2F5,$2F7,$2F9,$2FB,$2FD,$2FF - Likely unused.
+
+$3C4 - Likely unused.
+$3C5 - TODO
+$3CC - Likely unused.
+$3D1,$3D3,$3D5,$3D7,$3D9,$3DB,$3DD,$3DF - Likely unused.
+$3F0 - Likely unused.
+$3F2-$3F3 - Likely unused.
+$3F6-$3F7 - Likely unused.
