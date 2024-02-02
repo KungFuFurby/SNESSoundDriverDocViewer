@@ -1,0 +1,2 @@
+- The $FF command is hard-wired to only work for CPUIO1 SFX due to only using that specific array.
+- Volume is one byte only for CPUIO2 and CPUIO3 instances due to panning calculations being used instead. It also represents a decibel-like value (though it is shifted left once from the raw value given), also as a side effect of this operation.

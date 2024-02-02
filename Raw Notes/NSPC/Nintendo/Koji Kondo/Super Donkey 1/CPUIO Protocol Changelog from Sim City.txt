@@ -1,0 +1,35 @@
+(CPUIO0 ($2140/$F4) Protocol)
+- $01-$06 are no longer disabled by a switch. This is mostly because CPUIO1's purpose was completely replaced: there is still leftover code.
+
+(CPUIO1 ($2141/$F5) Protocol)
+- Completely replaced, so it is defined below...
+
+Polling rate: Once per SFX tempo tick.
+
+Output: Always zero after initialization.
+
+Input:
+$00 - NOP
+
+xx - Play SFX Sequence Set 1
+($01-$FF)
+- xx is a SFX ID to play on voice 7. The SFX ID can optionally trigger a second instance on voice 6 if an array entry is non-zero.
+
+NOTE: CPUIO2 and CPUIO3 have a conflict bug if they are triggered first and CPUIO1 tries to overwrite it.
+
+(CPUIO2 ($2142/$F6) Protocol)
+- Redefined with some extra bits below...
+
+%xyzzzzzz - Play SFX Sequence Set 2
+- %x activates panning on the left. This bit has priority over %y.
+- %y activates panning on the right.
+- %zzzzzz is a SFX ID. 
+
+(CPUIO3 ($2142/$F6) Protocol)
+- Duplicate instances now no longer overwrite each other, instead taking up a different voice.
+- Redefined with some extra bits below...
+
+%xyzzzzzz - Play SFX Sequence Set 3
+- %x activates panning on the left. This bit has priority over %y.
+- %y activates panning on the right.
+- %zzzzzz is a SFX ID. 

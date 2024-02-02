@@ -1,0 +1,4 @@
+(Music Format)
+- Command $E5 (Song Volume) is not permitted to run if the song volume is being faded OR if it is set to a different fixed value from a CPUIO command.
+- If command $F9 (Pitch Slide to Note) is being analyzed in readahead and the voice in question is currently occupied by SFX, then it skips the command entirely.
+- During readahead, if the command ID read is not zero or negative and the Y register offset becomes negative, it assumes that it hit a rest.

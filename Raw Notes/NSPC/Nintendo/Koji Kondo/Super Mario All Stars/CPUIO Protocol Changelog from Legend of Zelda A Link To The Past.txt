@@ -1,0 +1,2 @@
+- CPUIO2 ($2142/$F6) was moved to CPUIO0 ($2140/$F4).
+-- Command IDs $F2-$F3 were relocated to $F1-$F2.

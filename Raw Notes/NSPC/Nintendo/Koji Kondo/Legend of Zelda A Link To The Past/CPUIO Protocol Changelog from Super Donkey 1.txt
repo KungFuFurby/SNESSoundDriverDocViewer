@@ -1,0 +1,39 @@
+- Fixed a bug where triggering CPUIO1 SFX over CPUIO2 or CPUIO3 SFX on the same voice would cause a conflict to occur, resulting in the overwrite partially failing.
+- All duplicate SFX instances now overwrite each other instead of taking up another voice.
+
+(CPUIO0 ($2140/$F4) Protocol)
+- The leftover check for $01-$06 is gone.
+- The Play Song command has been redefined in an interesting way...
+
+%xxxyxxxx
+($01-$EF, $F4-$FE)
+- %xxxyxxxx is the song ID to play.
+- %y, if set, causes CPUIO2 and CPUIO3 SFX to look up a second array. If the array entry is zero, then echo is activated for the SFX instance. Normally echo is disabled.
+
+- $F1 fades out the song volume over 128 tempo ticks instead of 192.
+
+- $F2-$F3 are new here and are defined below.
+
+$F2 - Set Song Volume to $70
+Sets the song volume (and anything scaled by it) to $70. The original song volume is saved.
+
+$F3 - Restore Song Volume
+Restores the song volume to its original value from before it was set by CPUIO0 command $F2.
+
+- $FF stops the sound and goes to the loader.
+
+(CPUIO1 ($2141/$F5) Protocol)
+- Now outputs the last non-zero byte sent to it.
+- Has a new functionality for negative values. The command is defined below...
+
+%1??????? - Fade Out SFX Sequence Set 1
+($80-$FF)
+Fades out the SFX sequence currently playing on CPUIO1 over 120 SFX tempo ticks. The fade-out method is in mono and involves starting at a hardcoded VxVOL value (the countdown value shifted right once in this case).
+NOTE: There is a bug in the code where it assumes that the volume is always two bytes when handled this way.
+
+%xyyyyyyy - Play SFX Sequence Set 1
+- %x, if set
+- %yyyyyyy is a SFX ID to play on voice 7. The SFX ID can optionally trigger a second instance on voice 6 if an array entry is non-zero.
+
+(CPUIO2 ($2142/$F6) and CPUIO3 ($2143/$F7) Protocol)
+- Uses a second array. If the song ID ANDed by $10 is not zero, then the array is looked up. If the value read is zero, echo is enabled for the SFX instance. Otherwise, it is disabled by default.
