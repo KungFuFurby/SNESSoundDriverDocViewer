@@ -1,4 +1,5 @@
 (Phrase Format)
+- Clears out the loop counters as well as the volume and panning fade tick counters after reading a phrase and setting up the pattern pointers.
 - Two new commands are defined.
 
 $80 $00 - Fast Forward On
@@ -38,6 +39,12 @@ Fast Forward causes the song to stop playing and the player rapidly progresses t
 $FE - Fast Forward Off
 Disables Fast Forward and continues playing the song normally.
 
+- Note pitch envelope off command is now defined at $F3. The code previously existed, just that there was a zero pointer.
+- Pitch slide to note (Command $F9) no longer has a zero pointer. This means it can no longer cause a crash if encountered outside of readahead.
+- Other changes, sorted by command...
+-- In echo bits and volume (VCMD $EF/$F5) and echo off (VCMD $F0/$F6)...
+--- Doesn't write directly to DSP registers upon execution of the command.
+
 (Percussion)
 - A unique array is no longer used: instead, it matches the instrument's array. As a side effect of doing this, all percussion notes now play at a note of $A4 by default (the constant may be different elsewhere).
 
@@ -51,3 +58,4 @@ The instrument format now looks like this (dd is new and is defined below)
 
 (Other)
 - Readahead now accounts for the subroutine command (Command ID $E9/$EF) by jumping to it.
+- Readahead is missing SFX-related checks when checking for pitch slides to notes (Command ID $DD/$F9).
