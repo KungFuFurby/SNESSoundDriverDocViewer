@@ -43,7 +43,8 @@ $4F - Unused.
 $6B-$6F - Unused.
 $81,$83,$85,$87,$89,$8B,$8D,$8F - Unused.
 $D0 - Unused.
-$D4-$EF - Unused.
+$D4 - TODO (CPUIO1 SFX counter related)
+$D5-$EF - Unused.
 $101,$103,$105,$107,$109,$10B,$10D,$10F - Unused.
 $110-$1CF - Reserved for stack.
 $1D0-$1FF - Unused.
