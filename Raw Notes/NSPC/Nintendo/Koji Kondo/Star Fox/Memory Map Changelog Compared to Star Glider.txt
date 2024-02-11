@@ -64,8 +64,8 @@ $2F1,$2F3,$2F5,$2F7,$2F9,$2FB,$2FD,$2FF - Unused.
 $3C4-$3C5 - Unused.
 $3C6 - Header byte to use for the BRR noise.
 $3C8 - Unused.
-$3C9 - TODO (volume fade backup variable)
-$3CB - TODO (related to noise BRR generation as something to be ANDed by)
+$3C9 - Indicates whether a volume fade is currently being performed on CPUIO1 SFX.
+$3CB - Bitwise filter for BRR noise generator from the RNG output. Note that this is ORed by #$11 afterwards.
 $3CC-$3CD - Unused.
 $3CF - Unused.
 $3D1,$3D3,$3D5,$3D7,$3D9,$3DB,$3DD,$3DF - Unused.
@@ -75,9 +75,9 @@ $3F3 - Effectively only used for subtraction once echo bits have been set back. 
 $3F4-$3F5 - Unused.
 $3F7 - Unused.
 $3FA - Unused.
-$3FC - TODO (volume related variable, likely used for engine noise purposes)
+$3FC - Volume for CPUIO1 SFX.
 $3FD-$3FF - Unused.
-TODO
 
 Other notes:
+$3FB - Now only applicable to CPUIO2 sounds.
 TODO

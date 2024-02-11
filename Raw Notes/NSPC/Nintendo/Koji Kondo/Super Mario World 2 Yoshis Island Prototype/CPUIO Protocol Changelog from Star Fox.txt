@@ -1,0 +1,13 @@
+CPUIO1 and CPUIO2 are no longer utilized in any way, shape or form, though they are still read. Output will always be zero. The noise BRR generator code is still present, though.
+
+(CPUIO0 ($2140/$F4) Protocol)
+- Commands $F4-$F5 no longer affect transposition due to the X register no longer being used for a write (although in $F5's case, the transposition value was set to zero). In addition, their tempo values are no longer fixed: they're relative. For this reason, the redefinitions are provided below...
+$F4 - Slow Down Song
+Slows down the song tempo by 16 over 143 tempo ticks.
+
+$F5 - Speed Up Song
+Speeds up the song tempo by 8 over 143 tempo ticks.
+
+(CPUIO3 ($2143/$F7) Protocol)
+- Values that temporarily affect song volume are now $20-$2F.
+- SFX ID $24 triggers CPUIO0 command $F5.

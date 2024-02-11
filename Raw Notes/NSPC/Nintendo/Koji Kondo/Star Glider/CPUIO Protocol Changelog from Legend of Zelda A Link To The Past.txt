@@ -1,0 +1,33 @@
+(CPUIO1 ($2141/$F5) and CPUIO2 ($2142/$F6) Protocol)
+- Completely replaced. The new definition is...
+
+Polling rate: Once per SFX tempo tick.
+
+Output: Last value sent.
+
+Input:
+$00 - Fade Out
+Fades out the SFX instance at the rate defined by the instrument.
+NOTE: There is a conflict where having two different panning values on CPUIO1 and CPUIO2 causes one of them to fade out with a different panning value than what was used in the original.
+NOTE: There is a conflict with the music track volume due to some code and memory location recycling.
+
+%xxyyzzzz - Voice 6 (CPUIO1)/7 (CPUIO2) SFX Instance Control
+($01-$FF)
+- %xx controls the panning of the SFX instance, fading between the values.
+-- %00 TODO (appears to prepare a fade out to zero, but it only really works if all other bits are cleared: otherwise it suddenly stops once the value is changed)
+-- %01 pans left.
+-- %10 pans center.
+-- %11 pans right.
+- %yy controls the volume of the SFX instance, fading between the values. Higher volumes mean quieter values. In addition, the non-zero values also use a hardcoded note value that is different from the default note value.
+- %zzzz is the instrument ID to use for this instance. Zero is not a good idea unless you clear everything else out.
+
+The instruments themselves have a couple of extra things going for it. In addition to the actual instrument data, it also has a few other hardcoded parameters included in striped arrays that dictate the following...
+- Number of SFX tempo ticks to fade the volume, panning and pitch.
+- Default note used at max volume.
+
+(CPUIO3 ($2143/$F7) Protocol)
+- This is now the only CPUIO register that handles the SFX sequences.
+- Voices 6 and 7 are no longer dynamically allocated. They are completely reserved for CPUIO1 and CPUIO2.
+- Two SFX IDs do something special.
+-- $01 unpauses the sound.
+-- $02 pauses the sound in general. The music is paused outright and CPUIO2 and CPUIO3's command IDs are overwritten with zeroes, fading out those sounds as well.

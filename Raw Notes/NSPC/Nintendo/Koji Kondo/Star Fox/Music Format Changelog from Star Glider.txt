@@ -1,0 +1,2 @@
+(Phrase Format)
+- The fast forward phrase commands are cut.

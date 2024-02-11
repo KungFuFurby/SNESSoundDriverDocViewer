@@ -1,0 +1,6 @@
+(SFX Format)
+- The $FF command is gone.
+- Volume handling is back to being an optional two byte case.
+
+(SFX Instrument)
+- The instrument format has changed. It is now identical to standard Kankichi-kun minus noise support.

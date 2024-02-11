@@ -43,7 +43,7 @@ $4F - Unused.
 $6B-$6F - Unused.
 $81,$83,$85,$87,$89,$8B,$8D,$8F - Unused.
 $D0 - Unused.
-$D4 - TODO (CPUIO1 SFX counter related)
+$D4 - Only the lowest bit is used here. Pitch switch for CPUIO1 SFX with the highest bit set.
 $D5-$EF - Unused.
 $101,$103,$105,$107,$109,$10B,$10D,$10F - Unused.
 $110-$1CF - Reserved for stack.
@@ -55,7 +55,7 @@ $2F1,$2F3,$2F5,$2F7,$2F9,$2FB,$2FD,$2FF - Unused.
 $3C4-$3C6 - Unused.
 $3C8 - Unused.
 $3CB-$3CC - Unused.
-$3CD - Main note to use for CPUIO1 SFX, ORed by the lowest two bits of direct page $18 (an RNG value) for variance.
+$3CD - Main note to use for CPUIO1 SFX with the highest bit cleared, ORed by the lowest two bits of direct page $18 (an RNG value) for variance.
 $3CF - Music tempo backup.
 $3D1,$3D3,$3D5,$3D7,$3D9,$3DB,$3DD,$3DF - Unused.
 $3F0 - Unused.

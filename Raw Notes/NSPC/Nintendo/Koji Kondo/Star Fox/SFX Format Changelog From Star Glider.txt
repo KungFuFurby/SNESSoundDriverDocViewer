@@ -1,0 +1,5 @@
+- The disable echo array is gone.
+- The array reference for channel allocation has changed. Although we still have an ID to define for any additional SFX instances to initialize at the same time, the allocation is no longer dynamic, as now it consists of xy, where...
+-- x is the voice ID to use.
+-- y is the SFX priority. Higher values have higher priority, and ties overwrite each other.
+- Command $00 now restores the song volume on certain SFX IDs. For more info, see the CPUIO Protocol Changelog, as the values aren't fixed.

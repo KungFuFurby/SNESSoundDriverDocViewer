@@ -28,6 +28,12 @@ Relocated compared to Legend of Zelda - A Link to the Past...
 $3CD -> $07
 TODO
 
+Same as Super Mario World...
+TODO
+
+Relocated compared to Super Mario World...
+$388 -> $3E8
+
 Same as Pilotwings...
 TODO
 
@@ -40,13 +46,13 @@ TODO Pilotwings may or may not be relevant here
 TODO games with inherited memory locations
 
 New/Unused memory map locations:
-$0D - TODO (guessing startup counter of some kind for CPUIO2 SFX, considered new because it's essentially a different kind of hardcoded SFX)
+$0D - Number of SFX tempo ticks to wait before starting a CPUIO2 SFX.
 $1C-$2B - Unused.
 $2E-$2F - Unused.
 $4F - Unused.
 $6B-$6F - Unused.
 $81,$83,$85,$87,$89,$8B,$8D,$8F - Unused.
-$D1 - TODO (guessing startup counter of some kind for CPUIO1 SFX, considered new because it's essentially a different kind of hardcoded SFX)
+$D1 - Number of SFX tempo ticks to wait before starting a CPUIO1 SFX.
 $D2-$EF - Unused.
 $101,$103,$105,$107,$109,$10B,$10D,$10F - Unused.
 $110-$1CF - Reserved for stack.
@@ -58,19 +64,20 @@ $3C4-$3C5 - Only ever read from once. The routine it came from is also unused si
 $3C6 - Unused.
 $3CB-$3CD - Unused.
 $3CF-$3E0 - Unused.
-$3E4 -  Unused.
+$3E4 - Unused.
 $3E5 - Only read, never written to, thus essentially always zero. The code that would have written to this was deleted.
 $3E6 - Number of SFX tempo ticks to fade the volume, panning and pitch for a CPUIO2 sound.
-$3E7 -  Unused.
-$3E8 - TODO (guessing pause flag, TODO probably restored from Super Mario World)
+$3E7 - Unused.
 $3E9 - Target note to use for a CPUIO2 sound.
 $3EA - Unused.
-$3EB - TODO (panning related variable, possibly used by both CPUIO1 and CPUIO2 SFX instances)
-$3EC - Number of SFX tempo ticks to fade the volume, panning and pitch for a  CPUIO1 sound.
+$3EB - Last used target panning value for CPUIO1 and CPUIO2 sounds.
+$3EC - Number of SFX tempo ticks to fade the volume, panning and pitch for a CPUIO1 sound.
 $3ED - Target note to use for a CPUIO1 sound.
 $3EE-$3FE - Unused.
 $400,$402,$404,$406,$408,$40A,$40C - Unused.
 $40E-$7FF - Unused.
 
 Other notes:
+$0D, $D1 - Considered distinct because it is a different kind of hardcoded SFX than preceding instances.
+$3E8 - Does more than just pause the music: it also acts as a flag that forces CPUIO1 and CPUIO2 sounds to fade out.
 TODO

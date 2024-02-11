@@ -1,0 +1,31 @@
+(CPUIO0 ($2140/$F4) Protocol)
+- When a song is stopped either after a fade out or through command $F0, the song volume and tempo are reset.
+
+- Command $F1 (Fade Out) has reverted to Super Donkey 1 due to fading out over 160 tempo ticks again. However, it also does not run if song ID $11 is playing.
+
+- Has overflow checking for song IDs. The same situation applies for the song pointers: if the high byte is zero, then there is no song.
+
+- New commands...
+$F4 - Song Transposition + Tempo Modifier 1
+Modifies a couple of song parameters by setting the absolute transposition of voices 0-2 to negative two semitones, as well as fading the tempo over 143 tempo ticks to $09.
+
+$F5 - Song Transposition + Tempo Modifier 2
+Modifies a couple of song parameters by setting the absolute transposition of voices 0-2 to three semitones, as well as fading the tempo over 143 tempo ticks to $30.
+
+(CPUIO1 ($2141/$F5) Protocol)
+Input is completely replaced. The new definition is below...
+
+$00 - Fade Out
+Fades out the engine over 96 SFX tempo ticks. This also stops any pitch bending that the engine was doing.
+
+%xxyyyyyy - Voice 7 SFX Instance Control
+- %xx is effectively an engine sound ID, utilizing the noise BRR generator and modifying how it is output, in addition to also acting as a standard SFX instrument ID.
+- %yyyyyy is an array ID to an engine frequency note to jump to briefly via a 48 SFX tempo tick pitch bend (it otherwise maintains a roughly consistent note, with some random variance for every 112 SFX tempo tick pitch bend). The highest two bits need to be cleared because of the internal array size: it is otherwise effectively valid.
+
+(CPUIO2 ($2142/$F6) Protocol)
+- Moved to voice 6.
+- Fixes a conflict with the fade out command ($00) where the panning could be at an incorrect value. This is because CPUIO1 now always uses center panning.
+
+(CPUIO3 ($2143/$F7) Protocol)
+- Song IDs are no longer factored in to modifying how the SFX work. The echo is now disabled by default for all SFX sequence instances.
+- SFX IDs $0B-$0D, $15-$17 temporarily set the song volume to $88. When the SFX instance is terminated via the $00 command, the song volume is restored.

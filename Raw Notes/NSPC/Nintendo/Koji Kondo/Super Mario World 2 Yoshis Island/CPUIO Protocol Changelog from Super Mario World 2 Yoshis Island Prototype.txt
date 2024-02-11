@@ -1,0 +1,33 @@
+(CPUIO0 ($2140/$F4) Protocol)
+- Command $F1 (Fade Out)'s length has been redefined to 64 tempo ticks.
+- Commands $F4-$F5 were redefined again. Now they're back to being like Star Fox in terms of fading to a fixed tempo. The transposition values were also completely removed.
+$F4 - Tempo Modifier 1
+Fades the tempo over 143 tempo ticks to $16.
+
+$F5 - Tempo Modifier 2
+Fades the tempo over 239 tempo ticks to $44.
+
+- New command at $F6...
+$F6 - Restore Original Tempo
+
+(CPUIO1 ($2141/$F5) Protocol)
+- Usage is back with some programming recycled from Star Fox (its output is also back to being the last value sent instead of just zero). However, it has some differences, especially in the bitwise department, so the command is redefined below...
+
+$00 - Fade Out
+Fades out the engine over 64 SFX tempo ticks. This also stops any pitch bending that the engine was doing.
+
+%0xx?yyyy - Voice 7 Engine Set 1
+($01-$7F)
+- %xx is effectively an engine sound ID, acting like a standard SFX instrument ID in this case.
+- %yyyy is an array ID to a reference engine frequency note. They almost work like Star Fox down to the pitch bend speeds (48 SFX tempo ticks to change frequencies, and 112 SFX tempo ticks otherwise for random variance), except that it randomly hovers around the reference frequency note ORed by the lowest two bits of RNG.
+
+%1xx?yyyy - Voice 7 Engine Set 2
+($80-$FF)
+- %xx is effectively an engine sound ID, acting like a standard SFX instrument ID in this case.
+- %yyyy is an array ID to an engine frequency note to jump to briefly via a 48 SFX tempo tick pitch bend. It otherwise hovers around two fixed notes via a 32 SFX tempo tick pitch bend between each note.
+
+(CPUIO3 ($2143/$F7) Protocol)
+- The behavior of song volume-affecting SFX IDs has been replaced. Instead of using a special sub-routine call, it just directly executes CPUIO0 command $F2 to start the fade, and CPUIO0 command $F3 to end the fade.
+- Values that temporarily affect song volume are now $70-$71.
+- SFX ID $21 executes CPUIO0 command $F4 as well as setting some parameters on voice 0: namely, by zeroing out vibrato delay, setting a very slow pitch offset per step, and maxing out the vibrato pitch offset.
+- SFX ID $22 executes CPUIO0 command $F6 as well as setting some parameters on voice 0 by effectively disabling vibrato.
