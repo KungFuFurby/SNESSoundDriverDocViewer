@@ -31,9 +31,8 @@ Restores the song volume to its original value from before it was set by CPUIO0 
 Fades out the SFX sequence currently playing on CPUIO1 over 120 SFX tempo ticks. The fade-out method is in mono and involves starting at a hardcoded VxVOL value (the countdown value shifted right once in this case).
 NOTE: There is a bug in the code where it assumes that the volume is always two bytes when handled this way.
 
-%xyyyyyyy - Play SFX Sequence Set 1
-- %x, if set
-- %yyyyyyy is a SFX ID to play on voice 7. The SFX ID can optionally trigger a second instance on voice 6 if an array entry is non-zero.
+%0xxxxxxx - Play SFX Sequence Set 1
+- %xxxxxxx is a SFX ID to play on voice 7. The SFX ID can optionally trigger a second instance on voice 6 if an array entry is non-zero.
 
 (CPUIO2 ($2142/$F6) and CPUIO3 ($2143/$F7) Protocol)
 - Uses a second array. If the song ID ANDed by $10 is not zero, then the array is looked up. If the value read is zero, echo is enabled for the SFX instance. Otherwise, it is disabled by default.
