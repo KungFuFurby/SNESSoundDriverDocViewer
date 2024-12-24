@@ -73,3 +73,6 @@ $3F2-$3F3 - Likely unused.
 $3F4 - TODO (tempo ticker related)
 $3F5 - TODO (echo voice bit related)
 $3F6-$3F7 - Likely unused.
+
+Other notes:
+$3A1,$3A3,$3A5,$3A7,$3A9,$3AB,$3AD,$3AF - TODO (gains a usage affecting bit 3)
