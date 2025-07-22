@@ -31,6 +31,7 @@ NOTE: Versioning info is mostly from the SNESLab wiki entry at this time: furthe
 3.1 - World Cup Striker (European version) (Title Screen)
 3.1 - Kick Off 3 (Beta) (Title Screen)
       Lawnmower Man/Virtual Wars (US Beta)
+      Porky Pig's Haunted Holiday (beta - 3/16/1994)
 3.1 - Kick Off 3 (Beta) (In-Game)
 3.1 - Lawnmower Man/Virtual Wars (In-Game)
 3.1 - Lawnmower Man/Virtual Wars (Driving)
@@ -39,6 +40,6 @@ NOTE: Versioning info is mostly from the SNESLab wiki entry at this time: furthe
 3.1 - Lemmings 2 - The Tribes (Beach Tribe)
 3.1 - Lemmings 2 - The Tribes (Cavelem Tribe)
 3.1 - Lemmings 2 - The Tribes (Title Screen)
-3.1 - Porky Pig's Haunted Holiday (beta)
+3.1 - Porky Pig's Haunted Holiday (beta - 5/24/1994 and 1/26/1995)
 4.0a- Shaq Fu
 4.0b- Michael Jordan: Chaos in the Windy City
