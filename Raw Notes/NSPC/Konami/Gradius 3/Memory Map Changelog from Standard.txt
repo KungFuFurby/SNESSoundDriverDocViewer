@@ -21,9 +21,9 @@ N/A
 
 New/Unused memory map locations:
 $00-$03 - Unused.
-$04-$05 - TODO (data transfer pointer related)
-$06 - TODO (data transfer counter related)
-$07 - TODO (also data transfer counter related)
+$04-$05 - Pointer to transfer data to through CPUIO2.
+$06 - Last value sent to CPUIO3.
+$07 - CPUIO3 value to look for to execute a data transfer command.
 $08-$0A - Unused.
 $0B - Fade out flag.
 $0C - Fade out tick counter.
@@ -35,9 +35,9 @@ $1B - TODO (voice bit related, possibly which channels to skip VCMD processing f
 $1C - Unused.
 $1D - TODO (KON voice bit related)
 $1E - Scratch RAM. (TODO record usages if you want)
-$1F - TODO (voice bit related)
+$1F - TODO (voice bit related, could be legato-related as far as which voices have legato enabled via the quantization being zero)
 $20,$22,$24,$26,$28,$2A,$2C,$2E - Fixed pitch envelope tick counter, one byte per track. (related to VCMD $E4)
-$22,$23,$25,$27,$29,$2B,$2D,$2F - Fixed pitch envelope index ID, one byte per track. (related to VCMD $E4)
+$21,$23,$25,$27,$29,$2B,$2D,$2F - Fixed pitch envelope index ID, one byte per track. (related to VCMD $E4)
 $43 - Number of timer 0 ticks elapsed since last read.
 $4B-$4C - TODO (music address offset-related)
 $4D - Unused.
@@ -59,7 +59,7 @@ $220-$22F - Only written to, never read from. This actually renders the pitch ba
 $250,$252,$254,$256,$258,$25A,$25C,$25E - Total amount to transpose the note while in a repeat section, one byte per track.
 $251,$253,$255,$257,$259,$25B,$25D,$25F - Total amount to apply fine tune to the note while in a repeat section, one byte per track.
 $260-$26F - Pointer to the start of repeat section, one word per track.
-$270,$272,$274,$276,$278,$27A,$27C,$27E - Number of TODO ticks per step in fixed pitch envelope, one byte per track.
+$270,$272,$274,$276,$278,$27A,$27C,$27E - Number of tempo ticks per step in fixed pitch envelope, one byte per track.
 $271,$273,$275,$277,$279,$27B,$27D,$27F - Fixed pitch envelope signed scaler? One byte per track.
 $2E1,$2E3,$2E5,$2E7,$2E9,$2EB,$2ED,$2EF - Sound instance ID currently playing, one byte per track.
 $2F1,$2F3,$2F5,$2F7,$2F9,$2FB,$2FD,$2FF - Negative note volume offset, one byte per track.
@@ -70,3 +70,4 @@ $3A0-$3FF - Unused.
 
 Other notes...
 $4A - Never set by the sound driver to anything but zero.
+$201,$203,$205,$207,$209,$20B,$20D,$20F - Does something special (involves direct page $1F) if set to zero.
