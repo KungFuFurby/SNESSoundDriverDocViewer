@@ -1,0 +1,2 @@
+(Music Format)
+- Command $F9 (Pitch Slide to Note) is now properly skipped if run into outside of readahead while SFX is playing on the current voice.
