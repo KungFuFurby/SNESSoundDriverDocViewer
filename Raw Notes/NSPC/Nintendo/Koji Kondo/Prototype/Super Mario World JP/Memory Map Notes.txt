@@ -142,4 +142,6 @@ $38A-$3DF - Unused.
 $3E0-$3EF - Pointer to return to once exiting the subroutine and all loops have been executed. One word per track.
 $3F0-$3FF - Start of subroutine pointer, used when looping. One word per track.
 
-$400-$4FF - Unused.
+$400-$4FD - Unused.
+$4FE - Skips clearing of $200-$3FF when set to $5A along with $4FF being set to $A5.
+$4FF - Skips clearing of $200-$3FF when set to $A5 along with $4FE being set to $5A.

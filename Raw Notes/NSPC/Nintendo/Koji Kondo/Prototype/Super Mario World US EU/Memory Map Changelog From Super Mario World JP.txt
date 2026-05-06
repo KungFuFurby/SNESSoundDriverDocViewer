@@ -1,0 +1,39 @@
+Same as the Japanese version of Super Mario World (NOTE: Scratch RAM also counts):
+$00-$1D
+$2E-$49
+$50-$5C
+$60-$6A
+$70,$72,$74,$76,$78,$7A,$7C,$7E
+$80-$CF
+$100,$102,$104,$106,$108,$10A,$10C,$10E
+$110,$112,$114,$116,$118,$11A,$11C,$11E
+$200-$21F
+$220-$25F
+$260,$262,$264,$266,$268,$26A,$26C,$26E
+$280-$2DF
+$300-$30F
+$320-$389
+$3E0-$3FF
+
+Relocated compared to the Japanese version of Super Mario World:
+N/A
+
+New/Unused memory map locations:
+$1E-$2D - Unused.
+$4A-$4F - Unused.
+$5D-$5F - Unused.
+$6B-$6F - Unused.
+$71,$73,$75,$77,$79,$7B,$7D,$7F - Unused.
+$D0-$EF - Unused.
+
+$101,$103,$105,$107,$109,$10B,$10D,$10F - Unused.$111,$113,$115,$117,$119,$11B,$11D,$11F - Unused.
+$120-$1CF - Reserved for stack.
+$1D0-$1FF - Unused.
+
+$220-$23F - Unused.
+$261,$263,$265,$267,$269,$26B,$26D,$26F - Unused.
+$270-$27F - Unused.
+$2E0-$2FF - Unused.
+$310-$31F - Unused.
+$38A-$3DF - Unused.
+$400-$4FF - Unused.

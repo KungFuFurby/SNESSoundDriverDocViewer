@@ -1,0 +1,1 @@
+- $04FE-$04FF are no longer used. Subsequently, $0200-$03FF are not cleared on initialization when $04FE is $A5 and $04FF is $5A.
