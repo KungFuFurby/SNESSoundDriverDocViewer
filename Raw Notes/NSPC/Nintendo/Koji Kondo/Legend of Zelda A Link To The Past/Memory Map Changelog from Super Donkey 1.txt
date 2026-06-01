@@ -50,6 +50,7 @@ $3E2 - SFX voice bits to disable echo for CPUIO2 and CPUIO3 SFX. Note that this 
 $3E3 - SFX voice bits to disable echo for on SFX.
 $3E4 - Fade out counter for the CPUIO1 SFX.
 $3E5 - Stores the volume for the CPUIO1 SFX when fading it out. Note that the volume becomes mono when a fade is in progress due to only one byte being used to store the volume.
+$3E6-$3FE - Unused.
 $400,$402,$404,$406,$408,$40A,$40C - Unused.
 $40E-$7FF - Unused.
 
