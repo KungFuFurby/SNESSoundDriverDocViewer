@@ -38,7 +38,7 @@ $00 - Phrase Termination/End of Subroutine
 This command's operation depends on whether or not it is inside a subroutine or not. If it is inside a subroutine, it exits the subroutine and song execution continues. Otherwise, the phrase is terminated. This affects all channels in the music: any other channels still playing are interrupted.
 
 %0xxxxxxx (%0yyyzzzz) - Note Duration + Staccato Control/Velocity
-($01-$7F ($01-$7F))
+($01-$7F ($00-$7F))
 - %xxxxxxx represents your note length (as seven bits) in tempo ticks.
 - If the highest bit of the second byte is not set and it is not zero, then a second set of parameters is defined as following...
 -- %yyy defines an index value to a table of values that indicate, in 256ths, how far along the note to play before keying it off.
