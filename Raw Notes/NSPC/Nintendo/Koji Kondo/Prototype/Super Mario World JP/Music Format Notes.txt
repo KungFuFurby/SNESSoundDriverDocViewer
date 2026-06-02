@@ -93,6 +93,9 @@ $E1 xx yy zz - Song Volume Fade
 
 $E2 xx - Tempo
 - xx defines one tempo tick as one timer 0 tick multiplied by 256/x. Zero freezes the song.
+NOTE: Due to an undefined carry as well being offset via an ADC by $387 (which is used for the Hurry Up! SFX), there are a couple of side effects:
+- Setting the tempo directly through the $E2 command causes xx to be offset by one.
+- When the Hurry Up SFX is activated, the ADC operation adds one because of a set carry if the last CPUIO0 SFX that was played was $1D or greater.
 
 $E3 xx yy - Tempo Fade
 - xx defines the number of tempo ticks to fade for.

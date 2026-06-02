@@ -1,0 +1,4 @@
+(Music Format)
+- Not counting the relocation from command $E2 to command $E7 (Tempo), the carry is still undefined when offsetting by the tempo used by the Hurry Up! SFX. Therefore, the behavior has been redefined as following:
+-- Calling command $E7 directly clears the carry because this time it is cleared from an LSR command after an ASL.
+-- Calling the Hurry Up! SFX from CPUIO0 sets the carry due to directly comparing against the value, and thus the tempo is offset by one. This is a more consistent case than Super Mario World's.
