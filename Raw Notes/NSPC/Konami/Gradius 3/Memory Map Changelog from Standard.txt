@@ -27,7 +27,7 @@ $07 - CPUIO3 value to look for to execute a data transfer command.
 $08-$0A - Unused.
 $0B - Fade out flag.
 $0C - Fade out tick counter.
-$0D - Negative scaler for the note volume for music while fading out.
+$0D - Negative scaler for the calculated VxVOL for music while fading out.
 $18 - Unused.
 $19 - Mono/Stereo switch.
 $1A - Voice bits being paused.
@@ -62,7 +62,7 @@ $260-$26F - Pointer to the start of repeat section, one word per track.
 $270,$272,$274,$276,$278,$27A,$27C,$27E - Number of tempo ticks per step in fixed pitch envelope, one byte per track.
 $271,$273,$275,$277,$279,$27B,$27D,$27F - Fixed pitch envelope signed scaler? One byte per track.
 $2E1,$2E3,$2E5,$2E7,$2E9,$2EB,$2ED,$2EF - Sound instance ID currently playing, one byte per track.
-$2F1,$2F3,$2F5,$2F7,$2F9,$2FB,$2FD,$2FF - Negative note volume offset, one byte per track.
+$2F1,$2F3,$2F5,$2F7,$2F9,$2FB,$2FD,$2FF - Negative calculated VxVOL offset, one byte per track.
 
 $390,$392,$394,$396,$398,$39A,$39C,$39E - Transposition from the instrument currently being used, one byte per track.
 $391,$393,$395,$397,$399,$39B,$39D,$39F - Fine tune from the instrument currently being used, one byte per track.
