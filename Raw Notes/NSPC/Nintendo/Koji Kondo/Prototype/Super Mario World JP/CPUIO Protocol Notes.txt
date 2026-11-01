@@ -71,12 +71,12 @@ CPUIO3 ($2143/$F7)
 -------------------
 Polling rate: Once per SFX tempo tick.
 
-Output: Current SFX ID playing on voice 6. Zeroed out once the SFX is done playing.
+Output: Current SFX ID playing on voice 6 (counting the highest bit, which is otherwise ignored due to being shifted out). Zeroed out once the SFX is done playing.
 
 $00 - NOP
 Does absolutely nothing.
 
-xx - Play SFX Sequence Set 2
+%?xxxxxxx - Play SFX Sequence Set 2
 ($01-$FF)
-- xx is the SFX ID to play on voice 6.
--- $05, $1D and $24 cannot be interrupted by any other instances. In order of priority, though, $24 can interrupt $1D, which in turn can interrupt $05.
+- %xxxxxxx is the SFX ID to play on voice 6.
+-- $05, $1D and $24 cannot be interrupted by any other instances except for $24.
